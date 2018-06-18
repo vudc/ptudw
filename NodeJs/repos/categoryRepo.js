@@ -6,7 +6,7 @@ exports.loadAll = () => {
 
 exports.single = (id) => {
     return new Promise((resolve, reject) => {
-        var sql = `select * from categories where ID = ${id}`;
+        var sql = `select * from category where ID = ${id}`;
         db.load(sql).then(rows => {
             if (rows.length === 0) {
                 resolve(null);
@@ -17,4 +17,17 @@ exports.single = (id) => {
             reject(err);
         });
     });
+}
+
+exports.add = (c) => {
+    var sql = `insert into category(Name,Subname) values('${c.Name}','${c.Subname}')`;
+    return db.save(sql);
+}
+exports.delete = (c) => {
+    var sql = `update category set Status ='${c.Status}' where ID = ${c.ID}`;
+    return db.save(sql);
+}
+exports.update = (c) => {
+    var sql = `update category set Name = '${c.Name}',Subname = '${c.Subname}' where ID = ${c.ID}`;;
+    return db.save(sql);
 }

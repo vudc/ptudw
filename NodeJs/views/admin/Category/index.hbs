@@ -1,38 +1,46 @@
 {{#section 'title'}}
 	Categoriess
 {{/section}}
+<script>
+
+</script>
+<a style="margin-bottom:1em;" class="btn btn-secondary" href="/category/add" role="button">
+	<span class="fa fa-plus"></span>
+	Thêm danh mục mới
+</a>
 <div class="table-responsive">
-	<table class="table table-hover display my-datatable">
+	<table  class="table table-hover display my-datatable">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>name</th>
+			<th>Tên danh mục</th>
+			<th>Tên meta</th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
-		{{#each categories}}
+		{{#each Listcategories}}
+		{{#if Status}}
 		<tr>
 			<td>{{ID}}</td>
 			<td>{{Name}}</td>
+			<td>{{Subname}}</td>
 			<td class="text-right">
 				<a href="/category/delete?id={{ID}}" role="button">
 					<i class="fa fa-trash"></i>
 				</a>
-				<a href="/category/edit?id={{Name}}" role="button">
+				<a href="/category/edit?id={{ID}}" role="button">
 					<span class="fa fa-edit"></span>
 				</a>
 			</td>
 		</tr>
+		{{/if}}
 		{{/each}}
 	</tbody>
 </table>
 </div>
 
-<a class="btn btn-large btn-block btn-primary" href="/category/add" role="button">
-	<span class="glyphicon glyphicon-plus"></span>
-	Thêm danh mục mới
-</a>
+
 
 
 
