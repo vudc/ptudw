@@ -1,0 +1,155 @@
+{{#section 'title'}}
+	Chi tiết sản phẩm
+{{/section}}
+<!--product detail-->
+<style>
+    img {
+        width: :80% !important;
+    }
+</style>
+
+{{#with Product}}
+<section>
+    <p class="color-gray text-uppercase" style="font-size: 80%;">Sản phẩm / {{categoryName}}</p>
+    <div class="row">
+        <div class="col-lg-5">
+            <img src="{{Image}}" />
+        </div>
+        <div class="col-lg-4">
+            <h4 class="color-gray text-uppercase">
+                <strong>{{Name}}</strong>
+            </h4>
+            <p>
+                <i class="fa fa-star text-yellow"></i>
+                <i class="fa fa-star text-yellow"></i>
+                <i class="fa fa-star text-yellow"></i>
+                <i class="fa fa-star text-yellow"></i>
+                <i class="fa fas fa-star-half text-yellow"></i>
+                <small class="color-gray">27 đánh giá</small>
+            </p>
+            {{#if InStock}}
+            <p>
+                <strong>Tình trạng: </strong>Còn hàng</p>
+            {{else}}
+            <p>
+                <strong>Tình trạng: </strong>Hết hàng</p>
+            {{/if}}
+
+            <h5 style="color:rgb(219, 86, 86);">Giá:
+                <strong>{{Price}}</strong>đ</h5>
+            <hr>
+            <p>- Kem dưỡng ban ngày Simple thành phần phức hợp 2 Vital Vitamins: Pro-Vitamin B5
+                <br> - Giúp da mềm mịn tươi sáng rạng ngời
+                <br> - Thành phần kem dưỡng da chiết xuất từ vitamin E giúp da tươi sáng
+                <br> - Sản phẩm có chứa Glycerin và dầu Borage Seed giúp giữ ẩm và nuôi dưỡng da</p>
+            <form id="product">
+
+                <span>Số lượng:</span>
+                <div class="input-group">
+
+                    <span class="input-group-btn">
+                        <button type="button" class="quantity-left-minus btn btn-number" data-type="minus" data-field="">
+                            <span class="">-</span>
+                        </button>
+                    </span>
+                    <input type="text" id="quantity" name="quantity" class="form-control" value="1" min="1" max="99">
+                    <span class="input-group-btn">
+                        <button type="button" class="quantity-right-plus btn btn-number" data-type="plus" data-field="">
+                            <span class="">+</span>
+                        </button>
+                    </span>
+
+                </div>
+                <a class="bgcolor-purple btn">
+                    <i class="fa fa-cart"></i>Thêm vào giỏ hàng</a>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!--Product Detail-->
+<section style="margin: 1em 0 1em 0;">
+    <div class="accordion" id="AllProductDetail">
+        <div>
+
+        </div>
+        <button class="btn btn-sm btn-link" type="button" data-toggle="collapse" data-target="#productDiscription" aria-expanded="true"
+            aria-controls="productDiscription">
+            <strong>Mô tả</strong>
+        </button>
+        <button class="btn btn-sm btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+            aria-controls="collapseTwo">
+            <strong>Bình luận</strong>
+        </button>
+        <button class="btn btn-sm btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+            aria-controls="collapseThree">
+            <strong>Review</strong>
+        </button>
+        <div class="card">
+            <div id="productDiscription" class="collapse show" aria-labelledby="headingOne" data-parent="#AllProductDetail">
+                <div class="card-body">
+                    {{{Detail}}}
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#AllProductDetail">
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                    tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil
+                    anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                    excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                    you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#AllProductDetail">
+                <div class="card-body">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+                    tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil
+                    anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+                    excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                    you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h4 class="big-header">Sản phẩm cùng danh mục</h4>
+    <div class="owl-carousel owl-theme">
+        @{ var listProductRelate = ViewBag.ProductRelate as List
+        <DuyenMay.Models.Product>; foreach (var item in listProductRelate) {
+            <div class="item">
+
+                @{Html.RenderAction("Miniature", "Product", new { productID = item.ID }); }
+            </div>
+
+            } }
+    </div>
+</section>
+<hr /> {{/with}}
+<script>
+    $(document).ready(function () {
+        $('.owl-carousel').owlCarousel({
+            loop: false,
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+    });
+</script>

@@ -1,0 +1,50 @@
+{{#section 'title'}} Thêm mới sản phẩm {{/section}} {{#if showAlert}}
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    Đã thêm vào giỏ hàng
+</div>
+{{/if}}
+
+<form action="" method="POST" role="form">
+    <div class="form-group">
+        <label for="">Tên sản phẩm</label>
+        <input type="text" class="form-control" id="" name="Name" placeholder="Tên sản phẩm">
+    </div>
+
+    <div class="form-group">
+        <label for="">Mô tả sản phẩm</label>
+        <input type="text" class="form-control" id="" name="Discription" placeholder="Mô tả sản phẩm">
+    </div>
+    <div class="form-group">
+        <label for="">Link ảnh</label>
+        <input type="text" class="form-control" id="" name="Image" placeholder="href...">
+    </div>
+    <!-- CẬP NHẬT GIÁ -->
+    <div class="row">
+        <div class="form-group col-lg-6">
+            <label for="">Giá </label>
+            <input type="number" oninput="FillPromotionPrice(this.value)" class="form-control" id="Price" name="Price" placeholder="100.000đ">
+        </div>
+        <div class="form-group col-lg-6">
+            <label for="">Giá khuyến mãi</label>
+            <input type="number" class="form-control" id="PromotionPrice" name="PromotionPrice" placeholder="80.000đ">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Danh mục sản phẩm</label>
+        <input type="number" class="form-control" id="" name="CategoryID" placeholder="1,2,3...">
+    </div>
+    <div class="form-group">
+        <label for="">Danh mục sản phẩm</label>
+        <input type="text" class="form-control" id="" name="Detail" placeholder="allow Html">
+    </div>
+
+    <a class="btn btn-default" href="/admin/product" role="button">
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        View list
+    </a>
+    <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-check"></span>
+        Save
+    </button>
+</form>

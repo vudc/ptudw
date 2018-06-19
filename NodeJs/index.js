@@ -4,12 +4,14 @@ var express_handlebars_sections = require('express-handlebars-sections');
 var bodyParser = require('body-parser');
 var path = require('path');
 var CategoryController = require('./controllers/CategoryController'),
+    ProductController = require('./controllers/ProductController'),
     HomeController =require('./controllers/HomeController');
 var app = express();
 
 app.engine('hbs', exphbs({
     defaultLayout: '_LayoutPublic',
     layoutsDir: 'Views/Layout/',
+    partialsDir:'Views/partials/',
     helpers: {
         section: express_handlebars_sections()
     }
@@ -22,8 +24,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
-app.use('/category', CategoryController);
+app.use('/admin/product',ProductController);
+app.use('/admin/category', CategoryController);
 app.use('/home', HomeController);
 app.get('/', (req, res) => {
 	res.redirect('/home');
