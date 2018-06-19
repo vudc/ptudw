@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var handleLayoutMDW = require('./middle-wares/handleLayout');
 var CategoryController = require('./controllers/CategoryController'),
+    AccountController = require('./controllers/AccountController'),
     ProductController = require('./controllers/ProductController'),
     HomeController =require('./controllers/HomeController');
 var app = express();
@@ -29,7 +30,7 @@ app.use(bodyParser.urlencoded({
 //pass value to layout
 app.use(handleLayoutMDW);
 
-
+app.use('/account',AccountController);
 app.use('/admin/product',ProductController);
 app.use('/admin/category', CategoryController);
 app.use('/home', HomeController);
