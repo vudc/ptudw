@@ -3,6 +3,7 @@ var exphbs = require('express-handlebars');
 var express_handlebars_sections = require('express-handlebars-sections');
 var bodyParser = require('body-parser');
 var path = require('path');
+var handleLayoutMDW = require('./middle-wares/handleLayout');
 var CategoryController = require('./controllers/CategoryController'),
     ProductController = require('./controllers/ProductController'),
     HomeController =require('./controllers/HomeController');
@@ -24,6 +25,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+//pass value to layout
+app.use(handleLayoutMDW);
+
+
 app.use('/admin/product',ProductController);
 app.use('/admin/category', CategoryController);
 app.use('/home', HomeController);

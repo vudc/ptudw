@@ -48,9 +48,9 @@
                             Danh Mục
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            
+                            {{#each layoutVM.categories}}
+                                <a class="dropdown-item" href="#">{{Name}}</a>
+                            {{/each}}
                         </div>
                     </li>
                 </ul>
