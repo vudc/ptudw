@@ -43,7 +43,7 @@ exports.add = (p) => {
     var sql = `insert into product(Name,Discription,Image,Price,PromotionPrice,CategoryID,Detail) 
     values('${p.Name}','${p.Discription}','${p.Image}','${p.Price}','${p.PromotionPrice}','${p.CategoryID}','${p.Detail}')`;
     return db.save(sql);
-}
+}   
 exports.delete = (c) => {
     var sql = `update category set Status ='${c.Status}' where ID = ${c.ID}`;
     return db.save(sql);

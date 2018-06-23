@@ -6,7 +6,6 @@ module.exports = (req, res, next) => {
         req.session.isLogged = false;
 
 	}
-
     categoryRepo.loadAll().then(rows => {
         res.locals.layoutVM = {
             categories: rows,
