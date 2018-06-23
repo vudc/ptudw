@@ -19,8 +19,14 @@
                 <strong>01677 685 225 </strong>
             </p>
             <p class="p-2">
-                <a href="#" style="margin-right:0.2em;">Về chúng tôi</a>
+                
+                {{#if layoutVM.isLogged}}
+                    Xin chào, <a class="color-purple" href="#">{{layoutVM.currentUser.Name}}</a>
+                {{else}}
                 <a href="/account/login">Đăng nhập</a>
+                <a href="/account/register">Đăng ký</a>
+                {{/if}}
+                
             </p>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light shift">
