@@ -53,7 +53,7 @@
         left: 0;
         z-index: 20;
     }
-    #categoryDropdown .dropdown-item{
+    #categoryDropdown .dropdown-item, #ProducerDropdown .dropdown-item{
         color:#883fc1;
     }
 </style>
@@ -149,7 +149,19 @@
         </div>
     </div>
 </section>*@ -->
-
+<section>
+    <h3 style="margin-top:3em" class="dm-bigheader text-center">Sản phẩm mới</h3>
+    <div class="row">
+        {{#each listNewProduct}}
+            <div class="col-lg-2 col-md-6 text-center">
+                <img  src="{{Image}}" />
+                <p style="min-height: 96px;">{{Name}}</p>
+                <small>Giá: <span class="color-purple">{{Price}}đ</span></small><br>
+                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
+            </div>
+        {{/each}}
+    </div>
+</section>
 <!--Why Us-->
 <section style="margin-top:1em;">
     <hr class="hr-style" style="margin:0.1em 0 4em 0;" />

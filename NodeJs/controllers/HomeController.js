@@ -1,9 +1,17 @@
 var express = require('express');
 var productRepo = require('../repos/productRepo');
+var producerRepo = require('../repos/producerRepo');
 var router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('Home/index');
+    productRepo.topnew().then(rows => {
+        var vm = {
+            listNewProduct: rows
+        }
+        res.render('Home/index',vm);
+    }).catch(err =>{
+        res.end('loi truy cap database');
+    })
 });
 
 router.get('/about', (req, res) => {

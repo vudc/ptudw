@@ -54,7 +54,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-
+///
 //pass value to layout
 app.use(handleLayoutMDW);
 

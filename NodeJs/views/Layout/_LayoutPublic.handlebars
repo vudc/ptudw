@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <form style="display:none;" id="frmLogout" method="post" action="/account/logout"></form>
     <div class="opacity-background">
         <div id="dm-header" class="d-flex justify-content-between">
             <p class="p-2">Hotline :
@@ -22,7 +23,9 @@
             <p class="p-2">
                 
                 {{#if layoutVM.isLogged}}
-                    Xin chào, <a class="color-purple" href="#">{{layoutVM.currentUser.Name}}</a>
+                
+                    Xin chào, <a class="color-purple" href="#">{{layoutVM.currentUser.FullName}}</a>
+                    <a id="lnkLogout" href="javascript:;">Đăng xuất</a>
                 {{else}}
                 <a href="/account/login">Đăng nhập</a>
                 <a href="/account/register">Đăng ký</a>
@@ -57,6 +60,18 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {{#each layoutVM.categories}}
                                 <a class="dropdown-item" href="/category/{{Subname}}">{{Name}}</a>
+                            {{/each}}
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown"  id="ProducerDropdown" >
+                        <a class="nav-link dropdown-toggle"href="#" id="proDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Nhà sản xuất
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="proDropdown">
+                            {{#each layoutVM.listProducer}}
+                                <a class="dropdown-item" href="/category/{{ID}}">{{Name}}</a>
                             {{/each}}
                         </div>
                     </li>
@@ -128,5 +143,10 @@
     </div>
     <script src="/Script/DefaultScript.js"></script>
     {{{_sections.js}}}
+    <script>
+        $('#lnkLogout').on('click', function() {
+			$('#frmLogout').submit();
+		});
+    </script>
 </body>
 </html>

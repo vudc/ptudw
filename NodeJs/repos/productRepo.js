@@ -37,7 +37,10 @@ exports.single = (id) => {
         });
     });
 }
-
+exports.topnew = () => {
+    var sql = '(SELECT * FROM product ORDER BY CreateDate DESC LIMIT 12) ORDER BY CreateDate desc';
+    return db.load(sql);
+}
 exports.add = (p) => {
     console.log(p);
     var sql = `insert into product(Name,Discription,Image,Price,PromotionPrice,CategoryID,Detail) 
