@@ -17,8 +17,7 @@
     <form style="display:none;" id="frmLogout" method="post" action="/account/logout"></form>
     <div class="opacity-background">
         <div id="dm-header" class="d-flex justify-content-between">
-            <p class="p-2">Hotline :
-                <strong>01677 685 225 </strong>
+            <p class="p-2">
             </p>
             <p class="p-2">
 
@@ -75,7 +74,7 @@
                     </li>
                     {{#if layoutVM.isLogged}}
                     <li id="cartIcon" class="text-center">
-                        <a href="/gio-hang" class="color-purple">
+                        <a href="/cart" class="color-purple">
                             &nbsp;
                             <i class="fa fa fa-shopping-cart color-purple"></i> Giỏ hàng 
                             <sup>{{layoutVM.CartLength}}</sup>

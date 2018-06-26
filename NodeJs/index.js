@@ -9,7 +9,8 @@ var handleLayoutMDW = require('./middle-wares/handleLayout');
 var CategoryController = require('./controllers/CategoryController'),
     AccountController = require('./controllers/AccountController'),
     ProductController = require('./controllers/ProductController'),
-    HomeController =require('./controllers/HomeController');
+    HomeController =require('./controllers/HomeController'),
+    CartController = require('./controllers/CartController');
 var app = express();
 
 app.engine('hbs', exphbs({
@@ -61,6 +62,7 @@ app.use(handleLayoutMDW);
 app.use('/account',AccountController);
 app.use('/admin/product',ProductController);
 app.use('/admin/category', CategoryController);
+app.use('/cart', CartController);
 app.use('/home', HomeController);
 app.get('/', (req, res) => {
 	res.redirect('/home');
