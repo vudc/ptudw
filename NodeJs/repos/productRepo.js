@@ -121,3 +121,15 @@ exports.loadByCategoryPagination = (producerID,offset) =>{
     limit ${config.PRODUCTS_PER_PAGE} offset ${offset}`;
     return db.load(sql);
 }
+
+exports.loadOrderCategory =(productID) =>{
+    var sql = `select * from product
+    where categoryID in (select categoryID from product where ID = ${productID})`;
+    return db.load(sql);
+}
+
+exports.loadOrderProducer =(productID) =>{
+    var sql = `select * from product
+    where producerID in (select producerID from product where ID = ${productID})`;
+    return db.load(sql);
+}

@@ -1,0 +1,58 @@
+{{#section 'title'}} Giỏ hàng {{/section}} {{#if cartIsNull}}
+<div class="alert alert-primary" role="alert">
+    Chưa có sản phẩm nào trong giỏ hàng
+</div>
+<button id="btnContinue" class="btn btn-secondary bgray">Tiếp tục mua sắm</button>
+{{else}}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Danh mục</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each cart}}
+            <tr>
+                <td>{{product.ID}}</td>
+                <td>{{product.Name}}</td>
+                <td>
+                    <img style="width:70px" src="{{product.Image}}" width="100" />
+                </td>
+                <td>{{product.categoryName}}</td>
+                <td>
+                    <input type="number" class="form-control itemQuantity" data-id="@item.ID" value="{{quantity}}" min="1" max="99" />
+                </td>
+                <td>{{product.Price}}
+                    <span>đ</span>
+                </td>
+
+                <td>{{amount}}
+                    <span>đ</span>
+                </td>
+                <td>
+                    <a href="#" data-id="@item.ID" class="btnDelete">
+                        <i class="fa fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<button id="btnContinue" class="btn btn-secondary bgray">Tiếp tục mua sắm</button>
+<button id="btnDeleteCart" class="btn btn-secondary  bgray">Xóa giỏ hàng</button>
+<button id="btnUpdateCart" class="btn btn-secondary bgray">Cập nhật giỏ hàng</button>
+<button id="btnPayment" class="btn btn-info bgcolor-purple">Đặt hàng</button>
+
+{{/if}}
+
+<hr />

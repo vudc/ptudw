@@ -1,12 +1,11 @@
-exports.add = (cart, product) => {
+exports.add = (cart, CartItem) => {
     for (i = cart.length - 1; i >= 0; i--) {
-        if (cart[i].productID === product.ID) {
-            cart[i].Quantity += product.Quantity;
+        if (cart[i].productID === CartItem.productID) {
+            cart[i].quantity += CartItem.quantity;
             return;
         }
     }
-
-    cart.push(item);
+    cart.push(CartItem);
 }
 
 exports.remove = (cart, productID) => {

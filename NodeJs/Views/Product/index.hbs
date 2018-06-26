@@ -36,10 +36,10 @@
                 <br> - Sản phẩm có chứa Glycerin và dầu Borage Seed giúp giữ ẩm và nuôi dưỡng da
             </p>
             {{#if ../layoutVM.isLogged}}
-            <form id="product" method="POST" action="../cart/add">
+            <form id="product" method="POST" action="../../cart/add">
                 <span>Số lượng:</span>
                 <div class="input-group">
-                    <input type="hidden" value="{{ID}}" />
+                    <input type="hidden" value="{{ID}}" name="productID" />
                     <span class="input-group-btn">
                         <button type="button" class="quantity-left-minus btn btn-number" data-type="minus" data-field="">
                             <span class="">-</span>
@@ -54,8 +54,8 @@
 
                 </div>
                 <br />
-                <a class="bgcolor-purple btn text-white">
-                    <i class="fa fa-cart"></i>Thêm vào giỏ hàng</a>
+                <button type="submit" class="bgcolor-purple btn text-white">
+                    <i class="fa fa-cart"></i>Thêm vào giỏ hàng</button>
             </form>
             {{/if}}
         </div>
