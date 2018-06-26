@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>{{{_sections.title}}}</title>
     <meta name="google-site-verification" content="6V8-lG3qAUh9innt10E1dVesW8ubCniB-P114ERrdVQ" />
@@ -7,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/FontAwesome/css/fontawesome-all.css" />
-    <link rel="stylesheet" type="text/css" href="/css/Site.css">
-    {{{_sections.css}}}
+    <link rel="stylesheet" type="text/css" href="/css/Site.css"> {{{_sections.css}}}
     <script src="/Script/jquery-3.3.1.min.js"></script>
     <script src="/Script/bootstrap.js"></script>
 </head>
@@ -21,11 +21,10 @@
                 <strong>01677 685 225 </strong>
             </p>
             <p class="p-2">
-                
-                {{#if layoutVM.isLogged}}
-                
-                    Xin chào, <a class="color-purple" href="#">{{layoutVM.currentUser.FullName}}</a>
-                    <a id="lnkLogout" href="javascript:;">Đăng xuất</a>
+
+                {{#if layoutVM.isLogged}} Xin chào,
+                <a class="color-purple" href="#">{{layoutVM.currentUser.FullName}}</a>
+                <a id="lnkLogout" href="javascript:;">Đăng xuất</a>
                 {{else}}
                 <a href="/account/login">Đăng nhập</a>
                 <a href="/account/register">Đăng ký</a>
@@ -52,29 +51,38 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">Blog làm đẹp</a>
                     </li>
-                    <li class="nav-item dropdown"  id="categoryDropdown" >
-                        <a class="nav-link dropdown-toggle"href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                    <li class="nav-item dropdown" id="categoryDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
                             Danh Mục
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {{#each layoutVM.categories}}
-                                <a class="dropdown-item" href="/home/category/{{ID}}">{{Name}}</a>
+                            <a class="dropdown-item" href="/home/category/{{ID}}">{{Name}}</a>
                             {{/each}}
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown"  id="ProducerDropdown" >
-                        <a class="nav-link dropdown-toggle"href="#" id="proDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                    <li class="nav-item dropdown" id="ProducerDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="proDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Nhà sản xuất
                         </a>
                         <div class="dropdown-menu" aria-labelledby="proDropdown">
                             {{#each layoutVM.listProducer}}
-                                <a class="dropdown-item" href="/home/producer/{{ID}}">{{Name}}</a>
+                            <a class="dropdown-item" href="/home/producer/{{ID}}">{{Name}}</a>
                             {{/each}}
                         </div>
                     </li>
+                    {{#if layoutVM.isLogged}}
+                    <li id="cartIcon" class="text-center">
+                        <a href="/gio-hang" class="color-purple">
+                            &nbsp;
+                            <i class="fa fa fa-shopping-cart color-purple"></i> Giỏ hàng 
+                            <sup>{{layoutVM.CartLength}}</sup>
+                            &nbsp;
+                        </a>
+                    </li>
+                    {{/if}}
                 </ul>
             </div>
         </nav>
@@ -141,12 +149,12 @@
             </footer>
         </div>
     </div>
-    <script src="/Script/DefaultScript.js"></script>
-    {{{_sections.js}}}
+    <script src="/Script/DefaultScript.js"></script> {{{_sections.js}}}
     <script>
-        $('#lnkLogout').on('click', function() {
-			$('#frmLogout').submit();
-		});
+        $('#lnkLogout').on('click', function () {
+            $('#frmLogout').submit();
+        });
     </script>
 </body>
+
 </html>

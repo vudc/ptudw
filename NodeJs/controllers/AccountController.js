@@ -25,6 +25,7 @@ router.post('/login', (req, res) => {
         if (rows.length > 0) {
             req.session.isLogged = true;
             req.session.User = rows[0];
+            req.session.Cart = [];
             var url = '/';
             res.redirect('/');
         }
@@ -89,7 +90,7 @@ router.post('/register', (req, res) => {
 router.post('/logout', (req, res) => {
     req.session.isLogged = false;
     req.session.user = null;
-    // req.session.cart = [];
+    req.session.cart = [];
     res.redirect(req.headers.referer);
 });
 

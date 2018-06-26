@@ -14,7 +14,9 @@ module.exports = (req, res, next) => {
                 categories: rows,
                 listProducer: row2,
                 isLogged: req.session.isLogged,
-                currentUser: req.session.User
+                currentUser: req.session.User,
+                CartLength: (req.session.Cart === undefined) ? 0 : req.session.Cart.length,
+                Cart: req.session.Cart
             };
             next();
         });
