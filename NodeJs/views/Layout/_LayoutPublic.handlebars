@@ -30,12 +30,12 @@
                 <a href="/account/login">Đăng nhập</a>
                 <a href="/account/register">Đăng ký</a>
                 {{/if}}
-                
+                <a href="/home/search">Tìm kiếm</a>
             </p>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light shift">
             <a class="navbar-brand" href="#">
-                <img src="Content/image/Index/header-logo.png" />
+                <img src="/Content/image/Index/header-logo.png" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {{#each layoutVM.categories}}
-                                <a class="dropdown-item" href="/category/{{Subname}}">{{Name}}</a>
+                                <a class="dropdown-item" href="/home/category/{{ID}}">{{Name}}</a>
                             {{/each}}
                         </div>
                     </li>
@@ -71,7 +71,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="proDropdown">
                             {{#each layoutVM.listProducer}}
-                                <a class="dropdown-item" href="/category/{{ID}}">{{Name}}</a>
+                                <a class="dropdown-item" href="/home/producer/{{ID}}">{{Name}}</a>
                             {{/each}}
                         </div>
                     </li>

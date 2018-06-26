@@ -149,6 +149,22 @@
         </div>
     </div>
 </section>*@ -->
+
+<section>
+    <h3 style="margin-top:3em" class="dm-bigheader text-center">Sản xem nhiều nhất</h3>
+    <div class="row">
+        {{#each listViewProduct}}
+            <div class="col-lg-2 col-md-6 text-center">
+                <img  src="{{Image}}" />
+                <p style="min-height: 96px;">{{Name}}</p>
+                <small>Lượt truy cập: {{ViewCount}}</small>
+                <p>Giá: <span class="color-purple">{{Price}}đ</span></p><br>
+                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
+            </div>
+        {{/each}}
+    </div>
+</section>
+<hr />
 <section>
     <h3 style="margin-top:3em" class="dm-bigheader text-center">Sản phẩm mới</h3>
     <div class="row">
@@ -156,7 +172,24 @@
             <div class="col-lg-2 col-md-6 text-center">
                 <img  src="{{Image}}" />
                 <p style="min-height: 96px;">{{Name}}</p>
-                <small>Giá: <span class="color-purple">{{Price}}đ</span></small><br>
+                <small>ngày ra: {{CreateDate}}</small>
+                <p>Giá: <span class="color-purple">{{Price}}đ</span></p><br>
+                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
+            </div>
+        {{/each}}
+    </div>
+</section>
+
+<hr>
+<section>
+    <h3 style="margin-top:3em" class="dm-bigheader text-center">Lượt mua nhiều nhât</h3>
+    <div class="row">
+        {{#each listSellProduct}}
+            <div class="col-lg-2 col-md-6 text-center">
+                <img  src="{{Image}}" />
+                <p style="min-height: 96px;">{{Name}}</p>
+                <small>Lượt mua: {{SeoCount}}</small>
+                <p>Giá: <span class="color-purple">{{Price}}đ</span></p><br>
                 <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
             </div>
         {{/each}}

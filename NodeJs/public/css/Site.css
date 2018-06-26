@@ -37,6 +37,9 @@
     font-family: 'UniSansThinItalic';
     src: url('Font-family/UniSansThinItalic.otf');
 }
+.search-display {
+    margin: 4em 10% 4em 10%;
+}
 #intro {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: url('/Content/image/Index/Banner/banner_2.jpg');
