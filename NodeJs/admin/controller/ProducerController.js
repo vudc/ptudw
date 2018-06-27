@@ -4,7 +4,7 @@ var check = require('../../repos/checkRepo');
 var router = express.Router();
 var AdminLayout = '_LayoutAdmin';
 router.get('/add',(req,res)=>{
-    if (check.isAdmin(req.session.User)){
+    if (!check.isAdmin(req.session.User)){
         res.redirect('/account/login');
         return;
     }

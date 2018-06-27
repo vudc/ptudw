@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
             Listcategories: rows,
             layout: '_LayoutAdmin'
         };
-        res.render('admin/Category/index', vm);
+        res.render('../admin/views/category/index', vm);
     });
 });
 
@@ -19,7 +19,7 @@ router.get('/add', (req, res) => {
         showAlert: false,
         layout: '_LayoutAdmin'
     };
-    res.render('admin/Category/add', vm);
+    res.render('../admin/views/category/add', vm);
 });
 
 //Http Post -> thêm danh mục
@@ -29,7 +29,7 @@ router.post('/add', (req, res) => {
             showAlert: true,
             layout: '_LayoutAdmin'
         };
-        res.render('admin/Category/add', vm);
+        res.render('../admin/views/category/add', vm);
     }).catch(err => {
         res.end('fail');
     });
@@ -42,18 +42,17 @@ router.get('/delete', (req, res) => {
             Category: c,
             layout: '_LayoutAdmin'
         };
-        res.render('admin/Category/delete', vm);
+        res.render('../admin/views/category/delete', vm);
     });
 });
 
 
 //http Post -> Xóa danh mục
 router.post('/delete', (req, res) => {
-    categoryRepo.delete(req.body).then(value => {
-        var vm = {
-            layout: '_LayoutAdmin'
-        }
-        res.redirect('admin/Category',vm);
+    categoryRepo.delete(req.body.categoryID).then(value => {
+        res.redirect('/admin/Category');
+    }).catch(err =>{
+        res.redirect('/home/error');
     });
 });
 
@@ -64,7 +63,7 @@ router.get('/edit', (req, res) => {
             Category: c,
             layout: '_LayoutAdmin'
         };
-        res.render('admin/Category/edit', vm);
+        res.render('../admin/views/category/edit', vm);
     });
 });
 
@@ -74,7 +73,7 @@ router.post('/edit', (req, res) => {
         var vm = {
             layout: '_LayoutAdmin'
         }
-        res.redirect('/category');
+        res.redirect('/admin/category');
     });
 });
 

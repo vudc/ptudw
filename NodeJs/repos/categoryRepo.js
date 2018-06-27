@@ -21,11 +21,11 @@ exports.single = (id) => {
 
 
 exports.add = (c) => {
-    var sql = `insert into category(Name,Discription) values('${c.Name}','${c.Subname}')`;
+    var sql = `insert into category(Name,Discription) values('${c.Name}','${c.Discription}')`;
     return db.save(sql);
 }
-exports.delete = (c) => {
-    var sql = `update category set Status ='${c.Status}' where ID = ${c.ID}`;
+exports.delete = (id) => {
+    var sql = `update category set Status = 0 where ID = ${id}`;
     return db.save(sql);
 }
 exports.update = (c) => {

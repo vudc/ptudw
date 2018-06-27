@@ -1,6 +1,4 @@
-{{#section 'title'}}
-	Chỉnh sửa thông tin sản phẩm
-{{/section}}
+{{#section 'metaName'}} Quản lý danh mục {{/section}} {{#section 'metaFunction'}} chỉnh sửa {{/section}}
 
 {{#with Category}}
 <form action="" method="POST" role="form">
@@ -18,13 +16,13 @@
 		<input type="text" class="form-control" id="" name="Discription" value="{{Discription}}">
 	</div>
 
-	<a class="btn btn-default" href="/category" role="button">
-		<span class="glyphicon glyphicon-arrow-left"></span>
-		View List
+	<a class="btn btn-default" href="/admin/category" role="button">
+		<span class="fa fa-arrow-left"></span>
+		Danh sách danh mục
 	</a>
 	<button type="submit" class="btn btn-primary">
-		<span class="fa"></span>
-		Update
+		<span class="fa fa-save"></span>
+		Cập nhật
 	</button>
 </form>
 {{/with}}
