@@ -12,7 +12,6 @@ var
     ProductController = require('./controllers/ProductController'),
     HomeController = require('./controllers/HomeController'),
     CartController = require('./controllers/CartController');
-var admin_Upload = require('./admin/controller/FileController')
 var admin_ProducerController = require('./admin/controller/ProducerController');
 var admin_CategoryController = require('./admin/controller/CategoryController');
 
@@ -63,7 +62,6 @@ app.use(session({
 ///
 //pass value to layout
 app.use(handleLayoutMDW);
-app.use('/test',admin_Upload);
 app.use('/account', AccountController);
 app.use('/admin/product', ProductController);
 app.use('/admin/category', admin_CategoryController);
