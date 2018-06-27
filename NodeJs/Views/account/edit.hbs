@@ -1,0 +1,39 @@
+{{#section 'title'}} Thông tin cá nhân {{/section}}
+<div id="profile-header">
+    <h4 class="text-center">Thông tin cá nhân</h4>
+</div>
+{{#with user}}
+<Div class="row" id="profile">
+    <div class="col-lg-4 text-center">
+        <img src="/image/avatar.jpg">
+        <a href="#" class="btn">Đổi avatar</a>
+    </div>
+
+    <div class="col-lg-8" id="profile-col-right">
+        <form method="POST">
+            <input type="hidden" name="userID" value="{{ID}}"/>
+            <h3 class="color-gray">Tên đầy đủ:
+                <input name="FullName" class="form-control" value="{{FullName}}" />
+            </h3>
+            <p class="color-gray">
+                <strong>Email:</strong>
+                <input name="Email" class="form-control" value="{{Email}}" />
+            </p>
+            <p class="color-gray">
+                <strong>Địa chỉ:</strong>
+                <input name="Address" class="form-control" value="{{Address}}" />
+            </p>
+            <div id="xDoBContainer" style="position:relative">
+                <p class="color-gray">
+                    <strong>Ngày sinh:</strong>
+                    <input name="DoB" class="form-control" id="txtDoB" value="{{DoB}}" />
+                </p>
+            </div>
+            <button type="submit" class="btn btn-sm btn-secondary">Lưu thay đổi</button>
+            <a class="color-purle" href="#">Xem thông tin đặt hàng</a>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+</script> {{/with}}

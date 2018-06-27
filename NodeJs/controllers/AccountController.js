@@ -9,11 +9,47 @@ router.get('/login', (req, res) => {
     res.render('account/login', vm);
 });
 
-router.get('/profile', (req, res) => {
-    if (req.session.isLogged === false) {
+router.get('/edit',(req,res)=>{
+    if ((req.session.isLogged === false) || (req.session.User.ID != req.query.id)) {
         res.redirect('/error');
+        return;
     }
-    res.render('account/profile');
+    accountRepo.loadUser(req.query.id).then(result => {
+        var vm = {
+            user:result[0],
+        }
+        console.log(vm)
+        res.render('account/edit',vm);
+    }).catch(err => {
+        res.end('loi');
+    });
+});
+router.post('/edit',(req,res)=>{
+    var User = {
+        id: req.body.userID,
+        fullname: req.body.FullName,
+        email: req.body.Email,
+        address: req.body.Address,
+        dob: req.body.DoB
+    }
+    accountRepo.edit(User).then(r =>{
+        res.redirect('/account/profile?id='+User.id);
+    });
+})
+router.get('/profile', (req, res) => {
+    if ((req.session.isLogged === false) || (req.session.User.ID != req.query.id)) {
+        res.redirect('/error');
+        return;
+    }
+    accountRepo.loadUser(req.query.id).then(result => {
+        var vm = {
+            user:result[0],
+        }
+        console.log(vm)
+        res.render('account/profile',vm);
+    }).catch(err => {
+        res.end('loi');
+    });
 });
 router.post('/login', (req, res) => {
     var User = {
@@ -77,12 +113,12 @@ router.post('/register', (req, res) => {
                     SHOWMESSAGE_success: true,
                     MESSAGE_success: 'Đang ký thành công!'
                 }
-                res.render('account/register',vm);
+                res.render('account/register', vm);
             }).catch(err => {
                 res.end('fail');
             });;
         }
-    }).catch(err =>{
+    }).catch(err => {
         res.end('fail');
     });
 });

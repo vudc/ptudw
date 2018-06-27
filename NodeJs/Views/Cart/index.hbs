@@ -1,4 +1,19 @@
-{{#section 'title'}} Giỏ hàng {{/section}} {{#if cartIsNull}}
+{{#section 'title'}} Giỏ hàng {{/section}} 
+{{#section 'js'}}
+	<script type="text/javascript">
+		$('.btnDelete').on('click', function() {
+		    var id = $(this).data('proid');
+		    $('#delByProductID').val(id); 
+		    $('#removeItem_form').submit();
+		});
+	</script>
+{{/section}}
+<form style="display:none" id="payCart" method="POST" action="/Cart/payment"></form>
+<form style="display:none;" id="formRemoveAllCart" method="post" action="/Cart/RemoveAll"></form>
+<form id="removeItem_form" method="POST" action="/cart/remove">
+    <input name="productID" id="delByProductID" type="hidden"/>
+</form>
+{{#if cartIsNull}}
 <div class="alert alert-primary" role="alert">
     Chưa có sản phẩm nào trong giỏ hàng
 </div>
@@ -39,7 +54,7 @@
                     <span>đ</span>
                 </td>
                 <td>
-                    <a href="#" data-id="@item.ID" class="btnDelete">
+                    <a href="#" data-proid="{{product.ID}}" class="btnDelete">
                         <i class="fa fa-trash-alt"></i>
                     </a>
                 </td>
@@ -48,9 +63,9 @@
         </tbody>
     </table>
 </div>
+<p>Tổng tiền: {{total}}đ</p>
 <button id="btnContinue" class="btn btn-secondary bgray">Tiếp tục mua sắm</button>
-<button id="btnDeleteCart" class="btn btn-secondary  bgray">Xóa giỏ hàng</button>
-<button id="btnUpdateCart" class="btn btn-secondary bgray">Cập nhật giỏ hàng</button>
+<a href="#" onclick="$('#formRemoveAllCart').submit()" id="btnDeleteCart" class="btn btn-secondary  bgray">Xóa tất cả</a>
 <button id="btnPayment" class="btn btn-info bgcolor-purple">Đặt hàng</button>
 
 {{/if}}

@@ -1,0 +1,27 @@
+{{#section 'title'}}
+    Thông tin cá nhân
+{{/section}}
+<div id="profile-header">
+    <h4 class="text-center">Thông tin cá nhân</h4>
+</div>
+{{#with user}}
+<Div class="row" id="profile">
+    <div class="col-lg-4 text-center">
+        <img src="/image/avatar.jpg">
+        <a href="#" class="btn">Đổi avatar</a>
+    </div>
+    <div class="col-lg-8" id="profile-col-right">
+        <h3 class="color-gray">{{FullName}}
+            <small><i class="fa fa-map-marker-alt"></i>&nbsp;Việt Nam</small>&Tab;
+            <a href="/account/edit?id={{ID}}"><i class="fa fa-edit"></i></a>
+        </h3>
+        <h6><a  class="color-purple" target="_blank" href="https://www.google.com/search?source=hp&ei=byQzW47RCIngvgTV5JmYDw&q=web+developer&oq=web+develo&gs_l=psy-ab.3.0.0i131k1j0j0i67k1j0i203k1l5j0j0i203k1.75.3058.0.3772.11.10.0.0.0.0.135.1026.5j5.10.0....0...1.1.64.psy-ab..1.10.1024.0..35i39k1.0.5bx-oxodMEQ">Web Develop</a></h4>
+        <p class="color-gray"><strong>Tài khoản đăng nhập: </strong>{{f_Username}}</p>
+        <p class="color-gray"><strong>Email: </strong>{{Email}}</p>
+        <p class="color-gray"><strong>Địa chỉ: </strong>{{Address}}</p>
+         <p class="color-gray"><strong>Ngày sinh: </strong>{{DoB}}</p>
+
+         <a href="#" class="btn btn-sm btn-secondary">Đổi mật khẩu</a> <a class="color-purle" href="#">Xem thông tin đặt hàng</a>
+    </div>
+</Div>
+{{/with}}

@@ -113,21 +113,54 @@
         </div>
     </div>
 </section>
-
+{{/with}}  
 <section>
     <h4 class="big-header">Sản phẩm cùng danh mục</h4>
     <div class="owl-carousel owl-theme">
-        @{ var listProductRelate = ViewBag.ProductRelate as List
-        <DuyenMay.Models.Product>; foreach (var item in listProductRelate) {
-            <div class="item">
-
-                @{Html.RenderAction("Miniature", "Product", new { productID = item.ID }); }
+        {{#each orderCategoryList}}
+        <div class="item">
+            <div class="text-center">
+                <img src="{{Image}}" />
+                <p class="color-gray">{{categoryName}}</p>
+                <h6 class="color-purple">{{productName}}</h6>
+                
+                <p>
+                    <strong>{{Price}}đ</strong>
+                </p>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <a class="btn btn-secondary" href="/home/product?id={{productID}}">Chi tiết</a>
+                </div>
             </div>
-
-            } }
+        </div>
+        {{/each}}
     </div>
 </section>
-<hr /> {{/with}}
+
+<hr />
+<section>
+    <h4 class="big-header">Sản phẩm nhà sản xuất</h4>
+    <div class="owl-carousel owl-theme">
+        {{#each orderProducerList}}
+        <div class="item">
+            <div class="text-center">
+                <a href="/home/product?id={{productID}}"><img src="{{Image}}" /></a>
+                <a href="/home/category/{{categoryID}}"><small class="color-gray">{{categoryName}}</small></a> <br>
+                <a href="/home/producer/"><small class="color-gray">{{producerName}}</small></a>
+                
+                <h6 class="color-purple">{{productName}}</h6>
+                
+                <p>
+                    <strong>{{Price}}đ</strong>
+                </p>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <a class="btn btn-secondary" href="/home/product?id={{productID}}">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>
+<hr />   
 <script>
     $(document).ready(function () {
         $('.owl-carousel').owlCarousel({

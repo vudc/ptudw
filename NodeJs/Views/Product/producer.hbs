@@ -1,4 +1,5 @@
-{{#section 'title'}} Danh mục {{/section}} {{#section 'css'}}
+{{#section 'title'}} Danh mục {{/section}} 
+{{#section 'css'}}
 <style>
     .page-number-button {
         margin: 0.5em;
@@ -23,14 +24,14 @@
     <div class="col-lg-3">
         <img style="width:85%" src="{{Image}}" />
         <h6 class="text-uppercase" style="color:gray;min-height:57px;">{{productName}}</h6>
-        <small>Danh mục: {{categoryName}}</small><br />
+        <small>Danh mục: <a href="/home/category/{{categoryID}}">{{categoryName}}</a></small><br />
         <small>Nhà sản xuất: {{producerName}}</small>
         <p>Giá:
             <span class="color-purple">{{Price}}đ</span>
         </p>
         <br>
         <a href="../../home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a>
-        <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
+        <a href="#" onclick="addCart({{ID}})" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
     </div>
     {{/each}}
 </div>

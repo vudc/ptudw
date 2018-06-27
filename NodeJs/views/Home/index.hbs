@@ -159,7 +159,7 @@
                 <p style="min-height: 96px;">{{Name}}</p>
                 <small>Lượt truy cập: {{ViewCount}}</small>
                 <p>Giá: <span class="color-purple">{{Price}}đ</span></p><br>
-                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
+                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" onclick="addCart({{ID}})" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
             </div>
         {{/each}}
     </div>
@@ -174,7 +174,7 @@
                 <p style="min-height: 96px;">{{Name}}</p>
                 <small>ngày ra: {{CreateDate}}</small>
                 <p>Giá: <span class="color-purple">{{Price}}đ</span></p><br>
-                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
+                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" onclick="addCart({{ID}})" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
             </div>
         {{/each}}
     </div>
@@ -190,7 +190,7 @@
                 <p style="min-height: 96px;">{{Name}}</p>
                 <small>Lượt mua: {{SeoCount}}</small>
                 <p>Giá: <span class="color-purple">{{Price}}đ</span></p><br>
-                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
+                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" onclick="addCart({{ID}})" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
             </div>
         {{/each}}
     </div>

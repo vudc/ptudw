@@ -554,3 +554,26 @@ footer {
 .hideme {
     opacity:0;
 }
+#profile-header {
+    margin-bottom: 1em;
+    height:5em; 
+    background-color:lightgray;
+}
+#profile-header h4 {
+    line-height:3.2em;
+}
+#profile img {
+    text-align: center;
+    width: 80%;
+}
+#profile {
+    margin-bottom: 1em;
+}
+#profile #profile-col-right h3 a {
+    font-size: 80%;
+    
+}
+#profile #profile-col-right h3 small {
+    font-weight: 600;
+    font-size: 14px;
+}

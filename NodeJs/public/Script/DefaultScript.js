@@ -56,8 +56,20 @@ $(function () {
     });
 });
 $(document).ready(function ($) {
+    $('#btnPayment').on('click',function(){
+        $('#payCart').submit();
+    });
     setTimeout(function () {
         $('.trans--grow').addClass('hr-grow');
     }, 500);
 });
 
+function addCart(productID){
+    $('#addCartItem').val(productID);
+    $('#formAddCart').submit();
+}
+$('#txtDoB').datepicker({
+    container: '#xDoBContainer',
+    format: 'd/m/yyyy',
+    autoclose: true
+});

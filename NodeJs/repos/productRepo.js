@@ -103,17 +103,17 @@ exports.countByProducerID = (producerID) => {
 }
 
 exports.loadByCategoryPagination = (categoryID,offset) =>{
-    var sql = `select product.ID, product.Image, product.Name as productName, 
-    category.Name as categoryName, product.Price
-    from product INNER JOIN category ON product.categoryID = category.ID
+    var sql = `select product.ID, product.Image, product.Name as productName, product.categoryID,
+    category.Name as categoryName, product.Price,  producer.Name as producerName
+    from product INNER JOIN category ON product.categoryID = category.ID INNER JOIN producer ON producer.ID = product.producerID
     where product.categoryID = ${categoryID}
     limit ${config.PRODUCTS_PER_PAGE} offset ${offset}`;
     return db.load(sql);
 }
 
-exports.loadByCategoryPagination = (producerID,offset) =>{
+exports.loadByProducerPagination = (producerID,offset) =>{
     var sql = `select product.ID, product.Image, product.Name as productName, 
-    category.Name as categoryName, product.Price,
+    category.Name as categoryName, product.Price, product.categoryID, 
     producer.Name as producerName
     from product INNER JOIN category ON product.categoryID = category.ID
     INNER JOIN producer ON producer.ID = product.producerID
@@ -123,13 +123,15 @@ exports.loadByCategoryPagination = (producerID,offset) =>{
 }
 
 exports.loadOrderCategory =(productID) =>{
-    var sql = `select * from product
+    var sql = `select *,product.ID as productID,product.Name as productName,category.Name as categoryName from product INNER JOIN category 
+    ON product.categoryID = category.ID
     where categoryID in (select categoryID from product where ID = ${productID})`;
     return db.load(sql);
 }
 
 exports.loadOrderProducer =(productID) =>{
-    var sql = `select * from product
+    var sql = `select *,product.categoryID as categoryID,producer.Name as producerName,product.ID as productID,product.Name as productName,category.Name as categoryName from product INNER JOIN category 
+    ON product.categoryID = category.ID INNER JOIN producer ON product.producerID = producer.ID
     where producerID in (select producerID from product where ID = ${productID})`;
     return db.load(sql);
 }

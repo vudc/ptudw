@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/css/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="/css/owlcarousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="/asset/bootstrap-datepicker/css/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" type="text/css" href="/css/FontAwesome/css/fontawesome-all.css" />
     <link rel="stylesheet" type="text/css" href="/css/Site.css"> {{{_sections.css}}}
     <script src="/Script/jquery-3.3.1.min.js"></script>
@@ -17,6 +18,10 @@
 
 <body>
     <form style="display:none;" id="frmLogout" method="post" action="/account/logout"></form>
+    <form style="display:none;" id="formAddCart"method="POST" action="/cart/add">
+        <input name="productID" id="addCartItem" type="hidden"/>
+        <input name="quantity" value="1" type="hidden"/>
+    </form>
     <div class="opacity-background">
         <div id="dm-header" class="d-flex justify-content-between">
             <p class="p-2">
@@ -24,13 +29,13 @@
             <p class="p-2">
 
                 {{#if layoutVM.isLogged}} Xin chào,
-                <a class="color-purple" href="#">{{layoutVM.currentUser.FullName}}</a>
+                <a class="color-purple" href="/account/profile?id={{layoutVM.currentUser.ID}}">{{layoutVM.currentUser.FullName}}</a>
                 <a id="lnkLogout" href="javascript:;">Đăng xuất</a>
                 {{else}}
                 <a href="/account/login">Đăng nhập</a>
                 <a href="/account/register">Đăng ký</a>
                 {{/if}}
-                <a href="/home/search">Tìm kiếm</a>
+                | <a href="/home/search">Tìm kiếm</a>
             </p>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light shift">
@@ -70,7 +75,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="proDropdown">
                             {{#each layoutVM.listProducer}}
+                            {{#if Status}}
                             <a class="dropdown-item" href="/home/producer/{{ID}}">{{Name}}</a>
+                            {{/if}}
                             {{/each}}
                         </div>
                     </li>
@@ -151,6 +158,7 @@
         </div>
     </div>
     <script src="/css/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/asset/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
     <script src="/Script/DefaultScript.js"></script> {{{_sections.js}}}
     <script>
         $('#lnkLogout').on('click', function () {

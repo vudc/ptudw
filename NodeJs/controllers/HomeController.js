@@ -45,6 +45,7 @@ router.get('/category/:categoryID', (req, res) => {
     var page = req.query.page;
     if (!page) { page = 1; }
     var offset = (page - 1) * config.PRODUCTS_PER_PAGE;
+    console.log(offset);
     var p1 = productRepo.loadByCategoryPagination(categoryID, offset);
     var p2 = productRepo.countByCategoryID(categoryID);
 
@@ -52,9 +53,7 @@ router.get('/category/:categoryID', (req, res) => {
     Promise.all([p1, p2]).then(([pRows, countRows]) => {
         var totalProduct = countRows[0].totalProduct;
         var nPages = totalProduct / config.PRODUCTS_PER_PAGE;
-        console.log(nPages);
         if (totalProduct % config.PRODUCTS_PER_PAGE) { nPages++; }
-        console.log(nPages);
         var numbers = [];
         for (var i = 1; i <= nPages; i++) {
             numbers.push({
@@ -68,7 +67,6 @@ router.get('/category/:categoryID', (req, res) => {
             categoryName: (pRows.length !== 0) ? pRows[0].categoryName : '',
             page_number: numbers
         }
-        console.log(vm);
         res.render('Product/category', vm);
     });
 });
@@ -126,15 +124,17 @@ router.get('/product', (req, res) => {
     productRepo.AddView(1, req.query.id);
     var orderCategoryList = {};
     var orderProducerList = {};
-    
-    productRepo.SinglewithFull(req.query.id).then(c => {
-
-
+    var p1 = productRepo.loadOrderCategory(req.query.id);
+    var p2 = productRepo.loadOrderProducer(req.query.id);
+    var p3 = productRepo.SinglewithFull(req.query.id);
+    Promise.all([p1, p2, p3]).then(([orderCategoryList, orderProducerList, product]) => {
         var vm = {
-            Product: c,
+            orderCategoryList: orderCategoryList,
+            orderProducerList: orderProducerList,
+            Product: product,
             Layout: '_LayoutPublic'
         }
         res.render('Product/index', vm);
-    });
+    })
 });
 module.exports = router;
