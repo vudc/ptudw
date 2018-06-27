@@ -1,0 +1,26 @@
+{{#section 'metaName'}} Quản lý nhà sản xuất {{/section}} {{#section 'metaFunction'}}Xóa {{/section}} {{#with producer}}
+<form method="POST">
+    Mã nhà sản xuất:
+    <input name="producerID" value="{{ID}}" readonly="" />
+    <br>
+    <p>
+        <strong>Tên nhà sản xuất: </strong>{{Name}}</p>
+    <p>
+        <strong>Địa chỉ nhà sản xuất: </strong>{{Address}}</p>
+    <p>
+        <strong>SĐT nhà sản xuất: </strong>{{Phone}}</p>
+    <p>
+        <strong>Email nhà sản xuất: </strong>{{Email}}</p>
+    <p>
+        <strong>Website nhà sản xuất: </strong>{{Website}}</p>
+    <hr>
+    <a class="btn btn-default" href="/admin/producer" role="button">
+        <span class="fa fa-arrow-left"></span>
+        Danh sách nhà sản xuất
+    </a>
+    <button type="submit" class="btn btn-primary">
+        <span class="fa fa-save"></span>
+        Lưu lại
+    </button>
+</form>
+{{/with}}

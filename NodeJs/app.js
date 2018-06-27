@@ -11,6 +11,9 @@ var CategoryController = require('./controllers/CategoryController'),
     ProductController = require('./controllers/ProductController'),
     HomeController =require('./controllers/HomeController'),
     CartController = require('./controllers/CartController');
+
+var admin_ProducerController = require('./admin/controller/ProducerController');
+
 var app = express();
 
 app.engine('hbs', exphbs({
@@ -62,6 +65,7 @@ app.use(handleLayoutMDW);
 app.use('/account',AccountController);
 app.use('/admin/product',ProductController);
 app.use('/admin/category', CategoryController);
+app.use('/admin/producer',admin_ProducerController);
 app.use('/cart', CartController);
 app.use('/home', HomeController);
 app.get('/', (req, res) => {

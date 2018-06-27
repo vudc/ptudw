@@ -1,0 +1,43 @@
+{{#section 'metaName'}} Quản lý nhà sản xuất {{/section}} {{#section 'metaFunction'}} Chỉnh sửa {{/section}} 
+{{#if showAlert}}
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    Đã thêm mói nhà sản xuất
+</div>
+{{/if}}
+{{#with producer}}
+<form action="" method="POST" role="form">
+    <input type="hidden" name="producerID" value="{{ID}}"/>
+    <div class="form-group">
+        <label for="">Tên nhà sản xuất</label>
+        <input type="text" value="{{Name}}" class="form-control" id="" name="producerName" placeholder="Đông Á" required="">
+    </div>
+
+    <div class="form-group">
+        <label for="">Địa chỉ</label>
+        <input type="text" value="{{Address}}" class="form-control" id="" name="producerAddress" placeholder="1/1 Ngăn Ván A, phường X quận Y"  required="">
+    </div>
+
+    <div class="form-group">
+        <label for="">Số điện thoại</label>
+        <input type="text" value="{{Phone}}" class="form-control" id="" name="producerPhone" placeholder="0982634236">
+    </div>
+
+    <div class="form-group">
+        <label for="">Email</label>
+        <input type="mail" value="{{Email}}" class="form-control" id="" name="producerEmail" placeholder="abc@gmail.com">
+    </div>
+    <div class="form-group">
+        <label for="">Địa chỉ website</label>
+        <input type="text" value="{{Website}}" class="form-control" id="" name="producerWebsite" placeholder="duongcongvu.com">
+    </div>
+    <a class="btn btn-default" href="/admin/Category" role="button">
+        <span class="fa fa-arrow-left"></span>
+        Danh sách nhà sản xuất
+    </a>
+    <button type="submit" class="btn btn-primary">
+        <span class="fa fa-save"></span>
+        Lưu lại
+    </button>
+</form>
+{{/with}}

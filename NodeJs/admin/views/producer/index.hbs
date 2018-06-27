@@ -1,0 +1,53 @@
+{{#section 'metaName'}} Quản lý nhà sản xuất {{/section}} {{#section 'metaFunction'}} Trang chủ {{/section}} 
+
+<a style="margin-bottom:1em;" class="btn btn-secondary" href="/admin/producer/add" role="button">
+	<span class="fa fa-plus"></span>
+	Thêm mới nhà sản xuất
+</a>
+<div class="table-responsive">
+	<table  class="table table-hover display my-datatable">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Tên NSX</th>
+			<th>Địa chỉ</th>
+            <th>SĐT</th>
+            <th>Email</th>
+            <th>Website</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each listProducer}}
+		{{#if Status}}
+		<tr>
+			<td>{{ID}}</td>
+			<td>{{Name}}</td>
+			<td>{{Address}}</td>
+            <td>{{Phone}}</td>
+            <td>{{Email}}</td>
+            <td>{{Website}}</td>
+			<td class="text-right">
+				<a href="/admin/producer/delete?id={{ID}}" role="button">
+					<i class="fa fa-trash"></i>
+				</a>
+				<a href="/admin/producer/edit?id={{ID}}" role="button">
+					<span class="fa fa-edit"></span>
+				</a>
+			</td>
+		</tr>
+		{{/if}}
+		{{/each}}
+	</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+

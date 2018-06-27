@@ -119,6 +119,9 @@ router.get('/about', (req, res) => {
     res.render('Home/about');
 });
 
+router.get('/error',(req,res)=>{
+    res.render('Home/error');
+})
 
 router.get('/product', (req, res) => {
     productRepo.AddView(1, req.query.id);
