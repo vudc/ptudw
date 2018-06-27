@@ -33,7 +33,7 @@ router.get('/edit',(req,res)=>{
         }
         res.render('../admin/views/producer/edit',vm);
     }).catch(err =>{
-        res.end('loi truy xuat database');
+        res.redirect('/home/error');
     });
 });
 

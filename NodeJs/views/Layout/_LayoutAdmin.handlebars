@@ -11,12 +11,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duyen May Shop </title>
-    <script src="/Script/jquery-3.3.1.min.js"></script>
-    <script src="/Script/bootstrap.js"></script>
+    
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="/asset/css/normalize.css">
     <link rel="stylesheet" href="/asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/froala_editor_2.8.4/css/froala_editor.pkgd.min.css">
+    <link rel="stylesheet" href="/froala_editor_2.8.4/css/froala_style.css">
+
     <link rel="stylesheet" href="/asset/css/font-awesome.min.css">
     <link rel="stylesheet" href="/asset/css/themify-icons.css">
     <link rel="stylesheet" href="/asset/css/flag-icon.min.css">
@@ -30,6 +32,8 @@
     <link href="/asset/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <script src="/Script/jquery-3.3.1.min.js"></script>
+    <script src="/Script/bootstrap.js"></script>
 </head>
 
 <body>
@@ -417,8 +421,6 @@
     <!-- /#right-panel -->
     <!-- Right Panel -->
 
-    <script src="/Script/jquery-3.3.1.min.js"></script>
-    <script src="/Script/bootstrap.js"></script>
     <script type="text/javascript" src="/asset/DataTable/datatables.min.js"></script>
     <script type="text/javascript" src="/asset/DataTable/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="/asset/DataTable/Buttons-1.5.1/js/dataTables.buttons.min.js"></script>
@@ -435,12 +437,15 @@
     <script src="/asset/js/dashboard.js"></script>
     <script src="/asset/js/widgets.js"></script>
     <script src="/asset/js/lib/vector-map/jquery.vmap.js"></script>
+    {{{_sections.blogjs}}}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
     <script src="/asset/js/lib/vector-map/jquery.vmap.min.js"></script>
     <script src="/asset/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
     <script src="/asset/js/lib/vector-map/country/jquery.vmap.world.js"></script>
-    <script src="/Scripts/tinymce/tinymce.min.js"></script>
-    <script type="text/javascript" src="/Script/Blog.js"></script>
-    <script src="/Script/main.js"></script>
+    <script src="/froala_editor_2.8.4/js/froala_editor.pkgd.min.js"></script>
+    <script src="/Script/main.js"></script> 
+    {{{_sections.js}}}
 </body>
 
 </html>

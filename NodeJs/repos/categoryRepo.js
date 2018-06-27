@@ -21,7 +21,7 @@ exports.single = (id) => {
 
 
 exports.add = (c) => {
-    var sql = `insert into category(Name,Subname) values('${c.Name}','${c.Subname}')`;
+    var sql = `insert into category(Name,Discription) values('${c.Name}','${c.Subname}')`;
     return db.save(sql);
 }
 exports.delete = (c) => {
@@ -29,6 +29,6 @@ exports.delete = (c) => {
     return db.save(sql);
 }
 exports.update = (c) => {
-    var sql = `update category set Name = '${c.Name}',Subname = '${c.Subname}' where ID = ${c.ID}`;;
+    var sql = `update category set Name = '${c.Name}',Discription = '${c.Discription}' where ID = ${c.ID}`;;
     return db.save(sql);
 }
