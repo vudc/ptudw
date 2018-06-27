@@ -13,6 +13,8 @@
     $('#test').froalaEditor({
         // Set the file upload URL.
         imageUploadURL: '/test/image_upload',
+        imageManagerLoadMethod: "GET",
+        imageManagerLoadURL: '/test/load_images',
         imageUploadParams: {
             id: 'my_editor'
         }
