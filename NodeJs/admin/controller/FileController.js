@@ -32,9 +32,5 @@ router.get('/load_images', function (req, res) {
     });
 });
 // Create folder for uploading files.
-var filesDir = path.join(path.dirname(require.main.filename), "uploads");
 
-if (!fs.existsSync(filesDir)) {
-    fs.mkdirSync(filesDir);
-}
 module.exports = router;

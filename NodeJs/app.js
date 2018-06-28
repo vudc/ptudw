@@ -6,10 +6,10 @@ var express_handlebars_sections = require('express-handlebars-sections');
 var bodyParser = require('body-parser');
 var path = require('path');
 var handleLayoutMDW = require('./middle-wares/handleLayout');
-var upload_file = require("froala-editor");
+
 var
     AccountController = require('./controllers/AccountController'),
-    ProductController = require('./controllers/ProductController'),
+
     HomeController = require('./controllers/HomeController'),
     CartController = require('./controllers/CartController');
 var admin_Upload = require('./admin/controller/FileController')
@@ -26,17 +26,17 @@ app.engine('hbs', exphbs({
     partialsDir: 'Views/partials/',
     helpers: {
         section: express_handlebars_sections(),
-        compareStatus: function (v1,v2,option) { 
-            if (v1 === v2){
+        compareStatus: function (v1, v2, option) {
+            if (v1 === v2) {
                 return option.fn(this);
             }
             return option.inverse(this);
-         }
+        }
     }
 }));
 
 app.set('view engine', 'hbs');
-app.set("views", "./Views");
+app.set("views", path.join(__dirname, 'Views'));
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -71,10 +71,10 @@ app.use(session({
 ///
 //pass value to layout
 app.use(handleLayoutMDW);
-app.use('/test',admin_Upload);
+app.use('/test', admin_Upload);
 app.use('/account', AccountController);
-app.use('/admin/order',admin_OrderController);
-app.use('/admin/user',admin_UserController);
+app.use('/admin/order', admin_OrderController);
+app.use('/admin/user', admin_UserController);
 app.use('/admin/product', admin_ProductController);
 app.use('/admin/category', admin_CategoryController);
 app.use('/admin/producer', admin_ProducerController);
@@ -83,9 +83,15 @@ app.use('/home', HomeController);
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
-app.get('/admin',(req,res)=>{
+app.get('/admin', (req, res) => {
     res.redirect('/admin/order');
 })
-app.listen(3000, () => {
-    console.log('Site running on port 3200');
-});
+module.exports = app;
+// app.listen(3000, () => {
+//     console.log('Site running on port 3200');
+// });
+// http.createServer(function (req, res) {
+//     res.writeHead(200, {'Content-Type': 'text/plain'});
+//     res.end('Hello World\n');
+//   }).listen(13370, '0.0.0.0');
+//   console.log('Server running at http://0.0.0.0:13370/');
