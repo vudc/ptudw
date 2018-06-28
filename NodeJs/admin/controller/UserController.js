@@ -1,9 +1,14 @@
 var express = require('express');
 var userRepo = require('../../repos/accountRepo');
 var router = express.Router();
+var check = require('../../repos/checkRepo');
 var AdminLayout = '_LayoutAdmin';
 
 router.get('/',(req,res)=>{
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     userRepo.loadAll().then(result =>{
         var vm = {
             layout: AdminLayout,
@@ -15,6 +20,10 @@ router.get('/',(req,res)=>{
     })
 })
 router.get('/edit',(req,res)=>{
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     userRepo.loadUser(req.query.id).then(result=>{
         var vm = {
             layout: AdminLayout,
@@ -48,6 +57,10 @@ router.post('/edit',(req,res)=>{
 })
 
 router.get('/delete',(req,res)=>{
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     userRepo.loadUser(req.query.id).then(r=>{
         var vm = {
             user: r[0],

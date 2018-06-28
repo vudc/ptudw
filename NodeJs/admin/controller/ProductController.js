@@ -1,10 +1,15 @@
 var express = require('express');
+var check = require('../../repos/checkRepo');
 var productRepo = require('../../repos/productRepo');
 var categoryRepo = require('../../repos/categoryRepo');
 var producerRepo = require('../../repos/producerRepo');
 var router = express.Router();
 
 router.get('/', (req, res) => {
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     productRepo.loadAll().then(row => {
         var vm = {
             ListProduct: row,
@@ -14,6 +19,10 @@ router.get('/', (req, res) => {
     });
 });
 router.get('/add', (req, res) => {
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     producerRepo.LoadAll().then(producerList => {
         categoryRepo.loadAll().then(categoryList => {
             var vm = {
@@ -50,6 +59,10 @@ router.post('/add', (req, res) => {
 });
 
 router.get('/edit', (req, res) => {
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     productRepo.single(req.query.id).then(product => {
         var p1 = producerRepo.LoadAll();
         var p2 = categoryRepo.loadAll();

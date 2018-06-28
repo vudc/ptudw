@@ -83,6 +83,9 @@ app.use('/home', HomeController);
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
+app.get('/admin',(req,res)=>{
+    res.redirect('/admin/order');
+})
 app.listen(3000, () => {
     console.log('Site running on port 3200');
 });

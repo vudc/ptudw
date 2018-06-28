@@ -72,8 +72,7 @@ router.post('/login', (req, res) => {
             req.session.isLogged = true;
             req.session.User = rows[0];
             req.session.Cart = [];
-            var url = '/';
-            res.redirect('/');
+            res.redirect(req.headers.referer);
         }
         else {
             var vm = {

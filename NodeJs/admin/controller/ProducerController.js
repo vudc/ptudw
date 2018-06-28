@@ -15,6 +15,10 @@ router.get('/add',(req,res)=>{
 });
 
 router.get('/',(req,res)=>{
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     producerRepo.LoadAll().then(results=>{
         var vm = {
             listProducer: results,
@@ -26,6 +30,10 @@ router.get('/',(req,res)=>{
 });
 
 router.get('/edit',(req,res)=>{
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     producerRepo.single(req.query.id).then(result =>{
         var vm = {
             layout: AdminLayout,
@@ -38,6 +46,10 @@ router.get('/edit',(req,res)=>{
 });
 
 router.get('/delete',(req,res)=>{
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     producerRepo.single(req.query.id).then(result=>{
         var vm = {
             layout:AdminLayout,

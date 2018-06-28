@@ -1,9 +1,14 @@
 var express = require('express');
 var categoryRepo = require('../../repos/categoryRepo');
+var check = require('../../repos/checkRepo');
 var router = express.Router();
 
 //Load danh sách các danh mục
 router.get('/', (req, res) => {
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     categoryRepo.loadAll().then(rows => {
         var vm = {
             Listcategories: rows,
@@ -15,6 +20,10 @@ router.get('/', (req, res) => {
 
 //Http GET -> thêm danh mục
 router.get('/add', (req, res) => {
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     var vm = {
         showAlert: false,
         layout: '_LayoutAdmin'
@@ -37,6 +46,10 @@ router.post('/add', (req, res) => {
 
 //Http Get-> Xóa 1 danh mục
 router.get('/delete', (req, res) => {
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     categoryRepo.single(req.query.id).then(c => {
         var vm = {
             Category: c,
@@ -57,6 +70,10 @@ router.post('/delete', (req, res) => {
 });
 
 router.get('/edit', (req, res) => {
+    if (!check.isAdmin(req.session.User)){
+        res.redirect('/account/login');
+        return;
+    }
     categoryRepo.single(req.query.id).then(c => {
     	console.log(c);
         var vm = {
