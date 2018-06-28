@@ -15,7 +15,7 @@ router.get('/login', (req, res) => {
 router.get('/edit', (req, res) => {
     if ((req.session.isLogged === false) || (req.session.User.ID != req.query.id)) {
         res.redirect('/error');
-        return;
+        return; 
     }
     accountRepo.loadUser(req.query.id).then(result => {
         var vm = {
@@ -83,6 +83,8 @@ router.post('/login', (req, res) => {
             };
             res.render('account/login', vm);
         }
+    }).catch(err=>{
+        res.redirect('/home/error');
     });
 });
 
@@ -136,6 +138,7 @@ router.post('/register', (req, res) => {
     });
 });
 
+//GET chi tiết đơn hàng
 router.get('/order', (req, res) => {
     var orderID = req.query.id;
     var listProductReq = [];
@@ -170,11 +173,12 @@ router.get('/order', (req, res) => {
 
 })
 
+//đăng xuất
 router.post('/logout', (req, res) => {
     req.session.isLogged = false;
     req.session.user = null;
     req.session.cart = [];
-    res.redirect(req.headers.referer);
+    res.redirect('/account/login');
 });
 
 module.exports = router;

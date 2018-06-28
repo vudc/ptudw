@@ -28,9 +28,15 @@ exports.loadAll = () =>{
     return db.load(sql);
 }
 
+exports.delete = (userID) =>{
+    var sql = `update user set Status = 0 where ID = ${userID}`;
+    return db.save(sql);
+}
+
 exports.AdminEdit = (user) =>{
-    var sql = `update user set f_Username = '${user.username}',set f_Password = '${user.password}',
-     set FullName = '${user.fullname}',Address = '${user.address}', DoB = '${user.dob}', Email = '${user.email}' 
+    var sql = `update user set f_Username = '${user.username}', f_Password = '${user.password}',
+     FullName = '${user.fullname}',Address = '${user.address}', DoB = '${user.dob}', 
+     Email = '${user.email}' ,PhoneNumber = '${user.phone}',Role = '${user.role}'
     where ID = ${user.id}`;
     return db.save(sql);
 }

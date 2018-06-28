@@ -1,0 +1,17 @@
+{{#section 'metaName'}} Quản lý người dùng {{/section}} {{#section 'metaFunction'}} xóa người dùng {{/section}} 
+{{#with user}}
+<form method="POST">
+    <input type="text" readonly name="userID" value="{{ID}}"/>
+    <p><strong>Tên tài khoản: </strong> {{f_Username}}</p>
+    <p><strong>Họ và tên: </strong>{{FullName}}</p>
+    <p><strong>Địa chỉ: </strong>{{Address}}</p>
+    <p><strong>Số điện thoại: </strong>{{PhoneNumber}}</p>
+    <p><strong>Email: </strong>{{Email}}</p>
+    <p><strong>Ngày sinh: </strong>{{DoB}}</p>
+    <a class="btn btn-default" href="/admin/user" role="button">
+        <span class="fa fa-arrow-left"></span>
+        Danh sách người dùng
+    </a>
+    <button type="submit" class="btn btn-danger">Xóa người dùng</button>
+</form>
+{{/with}}

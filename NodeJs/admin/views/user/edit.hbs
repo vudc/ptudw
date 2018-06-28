@@ -1,0 +1,68 @@
+{{#section 'metaName'}} Quản lý người dùng {{/section}} {{#section 'metaFunction'}} chỉnh sửa {{/section}} {{#section 'js'}}
+<script type="text/javascript">
+    $('#txtDoBAdminEdit').datepicker({
+        container: '#txtDoBAdminEdit_container',
+        format: 'd/m/yyyy',
+        autoclose: true
+    });
+
+</script> {{/section}} {{#with user}}
+<form action="" method="POST" role="form">
+    <div class="form-group">
+        <input type="hidden" class="form-control" id="" name="ID" value="{{ID}}" readonly required>
+    </div>
+    <div class="form-group">
+        <label for="">Tên tài khoản</label>
+        <input type="text" class="form-control" id="" name="f_Username" required value="{{f_Username}}">
+    </div>
+
+    <div class="form-group">
+        <label for="">Mật khẩu</label>
+        <input type="text" class="form-control" id="" name="f_Password" required value="{{f_Password}}">
+    </div>
+
+    <div class="form-group">
+        <label for="">Họ và tên</label>
+        <input type="text" class="form-control" id="" name="FullName"  required value="{{FullName}}">
+    </div>
+
+    <div class="form-group">
+        <label for="">Email</label>
+        <input type="text" class="form-control" id="" name="Email" required value="{{Email}}">
+    </div>
+    <div class="form-group">
+        <label for="">Số điện thoại</label>
+        <input type="text" class="form-control" id="" name="Phone" required value="{{PhoneNumber}}">
+    </div>
+     <div class="form-group">
+        <label for="">Địa chỉ</label>
+        <input type="text" class="form-control" id="" name="Address" required value="{{Address}}">
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-6" id="txtDoBAdminEdit_container" style="position:relative">
+            <label for="">Ngày sinh</label>
+            <input type="text" class="form-control" id="txtDoBAdminEdit" name="DoB" value="{{DoB}}">
+        </div>
+        <div class="col-lg-6 form-group">
+            <label>Vai trò</label>
+            <select class="form-control" name="Role">
+                <option disabled selected>--Chọn vai trò--</option>
+                <option value="Admin">Admin</option>
+                <option value="Shipper">Shipper</option>
+                <option value="Customer">Customer</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    <a class="btn btn-default" href="/admin/user" role="button">
+        <span class="fa fa-arrow-left"></span>
+        Danh sách người dùng
+    </a>
+    <button type="submit" class="btn btn-primary">
+        <span class="fa fa-save"></span>
+        Cập nhật
+    </button>
+</form>
+{{/with}}

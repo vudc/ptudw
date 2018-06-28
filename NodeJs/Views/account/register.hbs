@@ -37,7 +37,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="form-w3-agile">
             <div class="contact-w3-agileits">
                 <h3>Đăng ký</h3>
-                <form action="#" method="post">
+                <form action="#" method="post" onsubmit="return validate()">
                     <div class="form-sub-w3ls">
                         {{#if SHOWMESSAGE_isUserExsits}}
                         <div class="alert alert-danger" role="alert">
@@ -50,7 +50,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             {{MESSAGE_success}} <a href="/account/login">Đăng nhập</a>
                         </div>
                         {{/if}}
-                        <input name="Username" placeholder="Tên tài khoản" type="text" required="">
+                        <span style="color:red" id="usernameAlert"></span>
+                        <input name="Username" placeholder="Tên tài khoản" id="txtUsername" type="text" required="">
                         <div class="icon-agile">
                             <i class="fa fa-user" aria-hidden="true"></i>
                         </div>
@@ -58,7 +59,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <div class="form-sub-w3ls">
                         <input name="Fullname" placeholder="Họ và tên" type="text" required="">
                         <div class="icon-agile">
-                            <i class="fa fa-user-tie" aria-hidden="true"></i>
+                            <i class="fa fa-file-signature" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="form-sub-w3ls">
@@ -68,13 +69,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         </div>
                     </div>
                     <div class="form-sub-w3ls">
-                        <input name="Password" placeholder="Mật khẩu" type="password" required="">
+                        <input name="Password" placeholder="Mật khẩu" id="txtPWD" type="password" required="">
                         <div class="icon-agile">
                             <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="form-sub-w3ls">
-                        <input placeholder="Nhập lại mật khẩu" type="password" required="">
+                         <span style="color:red" id="CPWDAlert"></span>
+                        <input placeholder="Nhập lại mật khẩu" id="txtCPWD" type="password" required="">
                         <div class="icon-agile">
                             <i class="fa fa-unlock-alt" aria-hidden="true"></i>
                         </div>
@@ -136,16 +138,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         });
 
         var validate = function () {
-            if ($('#txtUsername').val().length === 0) {
-                alert('Error');
+            if ($('#txtUsername').val().length <= 6 || $('#txtUsername').val().length >= 24) {
+                $('#usernameAlert').html('Nhập tên tài khoản từ 7 đến 24 ký tự');
                 return false;
             }
 
             if ($('#txtPWD').val() !== $('#txtCPWD').val()) {
-                alert('not match');
+                 $('#CPWDAlert').html('Xác nhận mật khẩu không đúng');
                 return false;
             }
-
             return true;
         }
     </script>
