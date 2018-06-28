@@ -1,6 +1,8 @@
 var express = require('express'),
     moment = require('moment');
+var config = require('../config/config');
 var accountRepo = require('../repos/accountRepo');
+var cartRepo = require('../repos/cartRepo');
 var router = express.Router();
 router.get('/login', (req, res) => {
     var vm = {
@@ -18,7 +20,6 @@ router.get('/edit',(req,res)=>{
         var vm = {
             user:result[0],
         }
-        console.log(vm)
         res.render('account/edit',vm);
     }).catch(err => {
         res.end('loi');
@@ -41,13 +42,20 @@ router.get('/profile', (req, res) => {
         res.redirect('/error');
         return;
     }
-    accountRepo.loadUser(req.query.id).then(result => {
-        var vm = {
-            user:result[0],
+    var p2 = cartRepo.loadAllOrderByUserID(req.query.id);
+    var p1 = accountRepo.loadUser(req.query.id);
+    Promise.all([p1,p2]).then(([r1,r2])=>{
+        for (var i = 0;i<r2.length;i++){
+            r2[i].CreateDate = moment(r2[i].CreateDate, 'YYYY-MM-DD HH:mm:ss').format('D/M/YYYY');
         }
-        console.log(vm)
+        var vm = {
+            user:r1[0],
+            order: r2,
+            
+        }
+        console.log(r2)
         res.render('account/profile',vm);
-    }).catch(err => {
+    }).catch(err=>{
         res.end('loi');
     });
 });
@@ -89,6 +97,7 @@ router.post('/register', (req, res) => {
     const secretKey = "6LifdWAUAAAAAG1OTkOEfz8wRr1BOqMBAS6TGTDc";
     const veryfyURL = `https://google.com/recapcha/api/siteverify?secret=${secretKey}
     &response=${req.body.capcha}&removeip=${req.connection.remoteAddress}`;
+    
     accountRepo.isUserExsits(req.body.Username).then(rows => {
         if (rows.length > 0) {
             var vm = {
@@ -125,6 +134,10 @@ router.post('/register', (req, res) => {
         res.end('fail');
     });
 });
+
+router.get('/order',(req,res)=>{
+    res.render('/account/order');
+})
 
 router.post('/logout', (req, res) => {
     req.session.isLogged = false;

@@ -22,10 +22,20 @@ exports.removeAll = (cart) => {
     return;
 }
 
+exports.loadAllOrderByUserID = (userID)=>{
+    var sql = `select * from dm_order where UserID = ${userID}`;
+    return db.load(sql);
+}
+
+exports.updateQuantity = (quantity, productID) =>{
+    var sql = `update product set Quantity = Quantity - ${quantity},SeoCount = SeoCount + ${quantity} where ID = ${productID}`;
+    return db.save(sql);
+}
 exports.FindOrderIDbyCreateDate = (createDate) => {
     var sql = `select ID from dm_order where CreateDate = '${createDate}'`;
     return db.load(sql);
 }
+
 
 exports.SaveCart = (cart, userID,dateNow) => {
     var sql = `insert into dm_order(UserID, CreateDate) values(${userID},'${dateNow}')`;

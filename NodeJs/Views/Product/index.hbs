@@ -7,6 +7,7 @@
 </style>
 
 {{#with Product}}
+{{#if Status}}
 <section>
     <p class="color-gray text-uppercase" style="font-size: 80%;">Sản phẩm / {{categoryName}}</p>
     <div class="row">
@@ -19,13 +20,7 @@
             </h4>
             <p>Lượt xem: {{ViewCount}}</p>
             <p>Lượt bán: {{SeoCount}}</p>
-            {{#if InStock}}
-            <p>
-                <strong>Tình trạng: </strong>Còn hàng</p>
-            {{else}}
-            <p>
-                <strong>Tình trạng: </strong>Hết hàng</p>
-            {{/if}}
+            <p>Số lượng: {{Quantity}}</p>
 
             <h5 style="color:rgb(219, 86, 86);">Giá:
                 <strong>{{Price}}</strong>đ</h5>
@@ -113,7 +108,11 @@
         </div>
     </div>
 </section>
+{{/if}}
+{{else}}
+<h3>Sản phẩm không tồn tại</h3>
 {{/with}}  
+
 <section>
     <h4 class="big-header">Sản phẩm cùng danh mục</h4>
     <div class="owl-carousel owl-theme">

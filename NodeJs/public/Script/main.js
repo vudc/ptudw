@@ -1,6 +1,8 @@
 
 $(document).ready(function () {
-    $('.my-datatable').DataTable();
+    $('.my-datatable').DataTable({
+        "autoWidth": true
+    });
     
 });
 function FillPromotionPrice(price) {

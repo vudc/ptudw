@@ -18,13 +18,18 @@ var admin_ProducerController = require('./admin/controller/ProducerController');
 var admin_CategoryController = require('./admin/controller/CategoryController');
 
 var app = express();
-
 app.engine('hbs', exphbs({
     defaultLayout: '_LayoutPublic',
     layoutsDir: 'Views/Layout/',
     partialsDir: 'Views/partials/',
     helpers: {
-        section: express_handlebars_sections()
+        section: express_handlebars_sections(),
+        compareStatus: function (v1,v2,option) { 
+            if (v1 === v2){
+                return option.fn(this);
+            }
+            return option.inverse(this);
+         }
     }
 }));
 

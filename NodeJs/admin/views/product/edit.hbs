@@ -1,14 +1,9 @@
-{{#section 'title'}} Thêm mới sản phẩm {{/section}} {{#if showAlert}}
-<div class="alert alert-success">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    Đã thêm vào giỏ hàng
-</div>
-{{/if}}
+{{#section 'metaName'}} Quản lý sản phẩm {{/section}} {{#section 'metaFunction'}} Chỉnh sửa sản phẩm {{/section}}
  {{#section 'blogjs'}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> {{/section}} 
 {{#section 'js'}}
 <script>
-    $('#productDetail').froalaEditor({
+    $('#productDetail-edit').froalaEditor({
         // Set the file upload URL.
         imageUploadURL: '/test/image_upload',
         imageManagerLoadMethod: "GET",
@@ -17,51 +12,66 @@
             id: 'my_editor'
         }
     })
-</script> 
-{{/section}}
+</script> {{/section}}
 {{#with product}}
 <form action="" method="POST" role="form">
-    <input name="productID" value="{{ID}}"  type="hidden"/>
+    <input type="hidden" name="productID"  value="{{ID}}"/>
     <div class="form-group">
         <label for="">Tên sản phẩm</label>
-        <input type="text" class="form-control" id="" name="Name" placeholder="Tên sản phẩm">
+        <input type="text" class="form-control" id="" name="Name" value="{{Name}}" placeholder="Tên sản phẩm">
     </div>
 
     <div class="form-group">
         <label for="">Mô tả sản phẩm</label>
-        <input type="text" class="form-control" id="" name="Discription" placeholder="Mô tả sản phẩm">
+        <input type="text" class="form-control" id="" name="Discription" value="{{Discription}}" placeholder="Mô tả sản phẩm">
+    </div>
+    <div class="row">
+        <div class="col-lg-6 form-group">
+            <select class="form-control" name="categoryID">
+                <option disabled="" selected>--Chọn danh mục--</option>
+                {{#each ../listCategory}}
+                    {{#if Status}}
+                    <option value="{{ID}}">{{Name}}</option>
+                    {{/if}}
+                {{/each}}
+            </select>
+        </div>
+        <div class="col-lg-6 form-group">
+            <select class="form-control" name="producerID">
+                <option disabled="" selected>--Chọn nhà sản xuất--</option>
+                {{#each ../listProducer}}
+                    <option value="{{ID}}">{{Name}}</option>
+                {{/each}}
+            </select>
+        </div>
     </div>
     <div class="form-group">
         <label for="">Link ảnh</label>
-        <input type="text" class="form-control" id="" name="Image" placeholder="href...">
+        <input type="text" class="form-control" id="" name="Image" value={{Image}} placeholder="href...">
     </div>
     <!-- CẬP NHẬT GIÁ -->
     <div class="row">
         <div class="form-group col-lg-6">
             <label for="">Giá </label>
-            <input type="number" oninput="FillPromotionPrice(this.value)" class="form-control" id="Price" name="Price" placeholder="100.000đ">
+            <input type="number" oninput="FillPromotionPrice(this.value)" class="form-control" id="Price" value="{{Price}}" name="Price" placeholder="100.000đ">
         </div>
         <div class="form-group col-lg-6">
             <label for="">Giá khuyến mãi</label>
-            <input type="number" class="form-control" id="PromotionPrice" name="PromotionPrice" placeholder="80.000đ">
+            <input type="number" class="form-control" value="{{PromotionPrice}}" id="PromotionPrice" name="PromotionPrice" placeholder="80.000đ">
         </div>
     </div>
     <div class="form-group">
-        <label for="">Danh mục sản phẩm</label>
-        <input type="number" class="form-control" id="" name="CategoryID" placeholder="1,2,3...">
-    </div>
-    <div class="form-group">
         <label for="">Chi tiết sản phẩm</label>
-        <textarea id="productDetail" type="text" class="form-control" id="" name="Detail" placeholder="allow Html"></textarea>
+        <textarea id="productDetail-edit" type="text" class="form-control" id="" name="Detail" placeholder="allow Html">{{Detail}}</textarea>
     </div>
 
     <a class="btn btn-default" href="/admin/product" role="button">
-        <span class="glyphicon glyphicon-arrow-left"></span>
+        <span class="fa fa-arrow-left"></span>
         View list
     </a>
     <button type="submit" class="btn btn-primary">
-        <span class="glyphicon glyphicon-check"></span>
-        Save
+        <span class="fa fa-save"></span>
+        Tạo mới
     </button>
 </form>
 {{/with}}

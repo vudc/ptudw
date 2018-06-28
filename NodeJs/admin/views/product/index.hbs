@@ -1,34 +1,38 @@
 <a style="margin-bottom:1em;" class="btn btn-secondary" href="/admin/product/add" role="button">
-	<span class="fa fa-plus"></span>
-	Thêm sản phẩm mới
+    <span class="fa fa-plus"></span>
+    Thêm sản phẩm mới
 </a>
 <div class="table-responsive">
-<table class="table display my-datatable">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tên</th>
-            <th>Giá</th>
-            <th>Danh mục</th>
-            <th>Tình trạng</th>
-            <th>Ngày tạo</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each ListProduct}}
-		{{#if Status}}
+    <table class="table display my-datatable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>Tình trạng</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each ListProduct}} {{#if Status}}
             <tr>
                 <td>{{ID}}</td>
                 <td>{{Name}}</td>
                 <td>{{Price}}</td>
-                <td>{{CategoryID}}</td>
                 <td>{{InStock}}</td>
-                <td>{{CreateDate}}</td>
-                <td></td>
+                <td class="text-right">
+                    <a role="button" href="/home/product?id={{ID}}">
+                        <i class="fa fa-align-justify"></i>
+                    </a>
+                    <a href="/admin/product/delete?id={{ID}}" role="button">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    <a href="/admin/product/edit?id={{ID}}" role="button">
+                        <span class="fa fa-edit"></span>
+                    </a>
+                </td>
             </tr>
-        {{/if}}
-        {{/each}}
-    </tbody>
-</table>
+            {{/if}} {{/each}}
+        </tbody>
+    </table>
 </div>

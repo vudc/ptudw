@@ -46,24 +46,21 @@ router.post('/add', (req, res) => {
     }
     cartRepo.add(req.session.Cart, item);
     res.redirect('/Cart');
-    console.log(req.session.Cart);
 })
 
 router.post('/removeall',(req,res)=>{
     cartRepo.removeAll(req.session.Cart);
-    console.log(req.session.Cart);
     res.redirect('/Cart');
 });
 
 //xóa 1 item khỏi giỏ hàng
 router.post('/remove',(req,res)=>{
-    console.log(req.body.productID);
     cartRepo.remove(req.session.Cart, req.body.productID);
     res.redirect(req.headers.referer);
 });
 
 router.get('/order',(req,res)=>{
-
+    res.render('Cart/orderlist');
 });
 
 router.post('/payment',(req,res)=>{
@@ -71,22 +68,39 @@ router.post('/payment',(req,res)=>{
         res.redirect('/account/login');
         return;
     }
-    var timeNowMysql = moment().format('YYYY-MM-DD HH:mm:ss');
-    cartRepo.SaveCart(req.session.Cart,req.session.User.ID,timeNowMysql).then(r =>{
-        cartRepo.FindOrderIDbyCreateDate(timeNowMysql).then(result =>{
-            var OrderID = result[0].ID;
-            console.log(OrderID);
-            var ListOrderDetail = [];
-            for (var i = 0 ;i< req.session.Cart.length;i++){
-                var cartItem = req.session.Cart[i];
-                var addCartDetail = cartRepo.SaveCartDetail(OrderID,cartItem);
-                ListOrderDetail.push(addCartDetail);
+    var IsOverStock = false;
+    productRepo.loadAll().then(rows=>{
+        for (var i = 0;i< req.session.Cart.length;i++){
+            for (var j = 0;j<rows.length;j++){
+                if ((rows[j].Quantity < req.session.Cart[i].quantity) && (rows[j].ID == req.session.Cart[i].productID)){
+                    IsOverStock = true;
+                    return res.redirect('/Cart');
+                }
             }
-            Promise.all(ListOrderDetail).then(results =>{
-                res.redirect('/Cart/order?orderID='+OrderID.toString());
+        }
+        if (!IsOverStock){
+            var timeNowMysql = moment().format('YYYY-MM-DD HH:mm:ss');
+            cartRepo.SaveCart(req.session.Cart,req.session.User.ID,timeNowMysql).then(r =>{
+                cartRepo.FindOrderIDbyCreateDate(timeNowMysql).then(result =>{
+                    var OrderID = result[0].ID;
+                    var ListOrderDetail = [];
+                    ListUpdateQuantity = [];
+                    for (var i = 0 ;i< req.session.Cart.length;i++){
+                        var cartItem = req.session.Cart[i];
+                        var updateQuantityItem = cartRepo.updateQuantity(cartItem.quantity, cartItem.productID);
+                        var addCartDetail = cartRepo.SaveCartDetail(OrderID,cartItem);
+                        ListOrderDetail.push(addCartDetail);
+                        ListUpdateQuantity.push(updateQuantityItem);
+                    }
+                    Promise.all([ListOrderDetail,ListUpdateQuantity]).then(([r1,r2]) =>{
+                        req.session.Cart.splice(0, req.session.Cart.length);
+                        res.redirect('/home');
+                    });
+                 });    
             });
-         });    
-    });
-    
+        }
+    }).catch(err =>{
+        res.end('loi thanh toan');
+    })
 });
 module.exports = router;

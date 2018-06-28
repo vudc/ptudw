@@ -137,6 +137,7 @@ router.get('/product', (req, res) => {
             Product: product,
             Layout: '_LayoutPublic'
         }
+        console.log(vm.Product);
         res.render('Product/index', vm);
     })
 });
