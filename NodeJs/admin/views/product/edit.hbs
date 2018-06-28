@@ -4,8 +4,24 @@
     Đã thêm vào giỏ hàng
 </div>
 {{/if}}
-
+ {{#section 'blogjs'}}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> {{/section}} 
+{{#section 'js'}}
+<script>
+    $('#productDetail').froalaEditor({
+        // Set the file upload URL.
+        imageUploadURL: '/test/image_upload',
+        imageManagerLoadMethod: "GET",
+        imageManagerLoadURL: '/test/load_images',
+        imageUploadParams: {
+            id: 'my_editor'
+        }
+    })
+</script> 
+{{/section}}
+{{#with product}}
 <form action="" method="POST" role="form">
+    <input name="productID" value="{{ID}}"  type="hidden"/>
     <div class="form-group">
         <label for="">Tên sản phẩm</label>
         <input type="text" class="form-control" id="" name="Name" placeholder="Tên sản phẩm">
@@ -35,8 +51,8 @@
         <input type="number" class="form-control" id="" name="CategoryID" placeholder="1,2,3...">
     </div>
     <div class="form-group">
-        <label for="">Danh mục sản phẩm</label>
-        <input type="text" class="form-control" id="" name="Detail" placeholder="allow Html">
+        <label for="">Chi tiết sản phẩm</label>
+        <textarea id="productDetail" type="text" class="form-control" id="" name="Detail" placeholder="allow Html"></textarea>
     </div>
 
     <a class="btn btn-default" href="/admin/product" role="button">
@@ -48,3 +64,4 @@
         Save
     </button>
 </form>
+{{/with}}

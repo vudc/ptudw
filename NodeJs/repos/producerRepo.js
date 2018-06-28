@@ -12,10 +12,10 @@ exports.edit = (producer) =>{
 }
 
 exports.LoadAll = () => {
-
     var sql = 'select * from producer';
     return db.load(sql);
 }
+
 exports.add = (producer) => {
     var sql = `insert into producer(Name,Address,Phone,Email,Website) 
     values('${producer.name}','${producer.address}','${producer.phone}','${producer.email}','${producer.website}')`;

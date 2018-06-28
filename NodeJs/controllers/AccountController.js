@@ -86,6 +86,9 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
     var doB = moment(req.body.DoB, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm');
+    const secretKey = "6LifdWAUAAAAAG1OTkOEfz8wRr1BOqMBAS6TGTDc";
+    const veryfyURL = `https://google.com/recapcha/api/siteverify?secret=${secretKey}
+    &response=${req.body.capcha}&removeip=${req.connection.remoteAddress}`;
     accountRepo.isUserExsits(req.body.Username).then(rows => {
         if (rows.length > 0) {
             var vm = {

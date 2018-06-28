@@ -64,7 +64,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {{#each layoutVM.categories}}
+                            {{#if Status}}
                             <a class="dropdown-item" href="/home/category/{{ID}}">{{Name}}</a>
+                            {{/if}}
                             {{/each}}
                         </div>
                     </li>

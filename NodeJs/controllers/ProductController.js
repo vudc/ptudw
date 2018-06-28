@@ -1,5 +1,4 @@
 var express = require('express');
-var linq = require('linq');
 var productRepo = require('../repos/productRepo');
 var router = express.Router();
 
@@ -9,7 +8,7 @@ router.get('/', (req, res) => {
             ListProduct: row,
             layout: '_LayoutAdmin'
         }
-        res.render('admin/Product/index', vm);
+        res.render('../admin/views/product/index', vm);
     });
 });
 router.get('/add', (req, res) => {
@@ -17,7 +16,7 @@ router.get('/add', (req, res) => {
         showAlert: false,
         layout: '_LayoutAdmin'
     };
-    res.render('admin/Product/add', vm);
+    res.render('../admin/views/product/add', vm);
 });
 
 router.post('/add', (req, res) => {
@@ -26,7 +25,7 @@ router.post('/add', (req, res) => {
             showAlert: true,
             layout: '_LayoutAdmin'
         };
-        res.render('admin/Product/add', vm);
+        res.render('../admin/views/product/add', vm);
     }).catch(err => {
         res.end('fail');
     });

@@ -13,6 +13,7 @@ var
     HomeController = require('./controllers/HomeController'),
     CartController = require('./controllers/CartController');
 var admin_Upload = require('./admin/controller/FileController')
+var admin_ProductController = require('./admin/controller/ProductController');
 var admin_ProducerController = require('./admin/controller/ProducerController');
 var admin_CategoryController = require('./admin/controller/CategoryController');
 
@@ -65,7 +66,7 @@ app.use(session({
 app.use(handleLayoutMDW);
 app.use('/test',admin_Upload);
 app.use('/account', AccountController);
-app.use('/admin/product', ProductController);
+app.use('/admin/product', admin_ProductController);
 app.use('/admin/category', admin_CategoryController);
 app.use('/admin/producer', admin_ProducerController);
 app.use('/cart', CartController);
@@ -73,6 +74,6 @@ app.use('/home', HomeController);
 app.get('/', (req, res) => {
     res.redirect('/home');
 });
-app.listen(3200, () => {
+app.listen(3000, () => {
     console.log('Site running on port 3200');
 });

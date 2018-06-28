@@ -80,8 +80,8 @@ exports.topsell = () => {
 
 exports.add = (p) => {
     console.log(p);
-    var sql = `insert into product(Name,Discription,Image,Price,PromotionPrice,CategoryID,Detail) 
-    values('${p.Name}','${p.Discription}','${p.Image}','${p.Price}','${p.PromotionPrice}','${p.CategoryID}','${p.Detail}')`;
+    var sql = `insert into product(Name,Discription,Image,Price,PromotionPrice,CategoryID,Detail,producerID) 
+    values('${p.name}','${p.discription}','${p.image}','${p.price}','${p.promotionprice}',${p.categoryid},'${p.detail}',${p.producerid})`;
     return db.save(sql);
 }   
 exports.delete = (c) => {
