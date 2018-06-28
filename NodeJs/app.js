@@ -13,6 +13,8 @@ var
     HomeController = require('./controllers/HomeController'),
     CartController = require('./controllers/CartController');
 var admin_Upload = require('./admin/controller/FileController')
+var admin_UserController = require('./admin/controller/UserController');
+var admin_OrderController = require('./admin/controller/OrderController');
 var admin_ProductController = require('./admin/controller/ProductController');
 var admin_ProducerController = require('./admin/controller/ProducerController');
 var admin_CategoryController = require('./admin/controller/CategoryController');
@@ -71,6 +73,8 @@ app.use(session({
 app.use(handleLayoutMDW);
 app.use('/test',admin_Upload);
 app.use('/account', AccountController);
+app.use('/admin/order',admin_OrderController);
+app.use('/admin/user',admin_UserController);
 app.use('/admin/product', admin_ProductController);
 app.use('/admin/category', admin_CategoryController);
 app.use('/admin/producer', admin_ProducerController);

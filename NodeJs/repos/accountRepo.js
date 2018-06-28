@@ -18,6 +18,19 @@ exports.add = user => {
 }
 
 exports.edit = (user) => {
-    var sql = `update user set FullName = '${user.fullname}',Address = '${user.address}', DoB = '${user.dob}', Email = '${user.email}' where ID = ${user.id}`;
+    var sql = `update user set FullName = '${user.fullname}',Address = '${user.address}', DoB = '${user.dob}', Email = '${user.email}' 
+    where ID = ${user.id}`;
+    return db.save(sql);
+}
+
+exports.loadAll = () =>{
+    var sql = `select * from user`;
+    return db.load(sql);
+}
+
+exports.AdminEdit = (user) =>{
+    var sql = `update user set f_Username = '${user.username}',set f_Password = '${user.password}',
+     set FullName = '${user.fullname}',Address = '${user.address}', DoB = '${user.dob}', Email = '${user.email}' 
+    where ID = ${user.id}`;
     return db.save(sql);
 }

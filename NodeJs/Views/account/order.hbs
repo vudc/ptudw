@@ -1,0 +1,31 @@
+
+<div style="margin:1em;">
+    <a href="/account/profile" class="btn btn-secondary"><i class="fa fa-arrow-left"></i> Quay về trang cá nhân</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Số lượng</th>
+                <th>Giá tiền</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each listProduct}}
+            <tr>
+                <td>{{product.ID}}</td>
+                <td>{{product.Name}}</td>
+                <td><img src="{{product.Image}}" style="width:60px;"/></td>
+                <td>{{quantity}}</td>
+                <td>{{product.Price}}đ</td>
+                <td>{{amount}}đ</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

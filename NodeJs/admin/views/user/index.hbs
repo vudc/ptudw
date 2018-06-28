@@ -1,0 +1,48 @@
+{{#section 'metaName'}} Quản lý người dùng {{/section}} {{#section 'metaFunction'}} Trang chủ {{/section}} 
+
+<div class="table-responsive">
+	<table  class="table table-hover display my-datatable">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Username</th>
+			<th>Mật khẩu</th>
+            <th>Địa chỉ </th>
+            <th>Ngày sinh</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each listUser}}
+		<tr>
+            <td>{{ID}}</td>
+			<td>{{f_Username}}</td>
+			<td>{{f_Password}}</td>
+			<td>{{Address}}</td>
+            <td>{{DoB}}</td>
+			<td class="text-right">
+				<a href="/admin/user/delete?id={{ID}}" role="button">
+					<i class="fa fa-trash"></i>
+				</a>
+				<a href="/admin/user/edit?id={{ID}}" role="button">
+					<span class="fa fa-edit"></span>
+				</a>
+                <a href="/admin/user/detail?id={{ID}}" role="button">
+                    <i class="fa fa-note"></i>
+                </a>
+			</td>
+		</tr>
+		{{/each}}
+	</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+

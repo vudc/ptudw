@@ -36,6 +36,10 @@ exports.FindOrderIDbyCreateDate = (createDate) => {
     return db.load(sql);
 }
 
+exports.LoadOrderDetail = (orderID) =>{
+    var sql = `select * from orderdetail where OrderID = ${orderID}`;
+    return db.load(sql);
+}
 
 exports.SaveCart = (cart, userID,dateNow) => {
     var sql = `insert into dm_order(UserID, CreateDate) values(${userID},'${dateNow}')`;

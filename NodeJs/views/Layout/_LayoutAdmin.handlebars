@@ -47,10 +47,10 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="./">
-                    <img src="/asset/images/logo.png" alt="Logo">
+                   Duyên Mây
                 </a>
                 <a class="navbar-brand hidden" href="./">
-                    <img src="/asset/images/logo2.png" alt="Logo">
+                    D
                 </a>
             </div>
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -72,7 +72,7 @@
                             <i class="menu-icon fa fa-dashboard"></i>Quản lý Sản phẩm</a>
                     </li>
                     <h3 class="menu-title">UI elements</h3>
-                    <li class="menu-item-has-children dropdown">
+                    {{!-- <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="menu-icon fa fa-table"></i>Quản lý</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -238,7 +238,7 @@
                                 <a href="pages-forget.html">Forget Pass</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -256,7 +256,8 @@
                         <i class="fa fa fa-tasks"></i>
                     </a>
                     <div class="header-left">
-                        <button class="search-trigger">
+                        <h6>Chào {{layoutVM.currentUser.FullName}} (Role: {{layoutVM.currentUser.Role}})</h6>
+                        {{!-- <button class="search-trigger">
                             <i class="fa fa-search"></i>
                         </button>
                         <div class="form-inline">
@@ -338,25 +339,27 @@
                                     </span>
                                 </a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
+                
+                 <form style="display:none;" class="frmLogout" method="post" action="/account/logout"></form>
                 <div class="col-sm-5">
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="/asset/images/admin.jpg" alt="User Avatar">
+                            <img style="height:30px; width:30px;" class="user-avatar rounded-circle" src="/image/avatar.jpg" alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa- user"></i>My Profile</a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/account/profile">
+                                <i class="fa fa-user"></i> Thông tin</a>
+                            {{!-- <a class="nav-link" href="#">
                                 <i class="fa fa- user"></i>Notifications
                                 <span class="count">13</span>
-                            </a>
-                            <a class="nav-link" href="#">
-                                <i class="fa fa -cog"></i>Settings</a>
-                            <a class="nav-link" href="~/Login/Logout">
-                                <i class="fa fa-power -off"></i>Logout</a>
+                            </a> --}}
+                            {{!-- <a class="nav-link" href="#">
+                                <i class="fa fa -cog"></i>Settings</a> --}}
+                            <a class="nav-link" href="#" onclick="$('.frmLogout').submit()" >
+                                <i class="fa fa-power-off"></i> Đăng xuất</a>
                         </div>
                     </div>
                     <div class="language-select dropdown" id="language-select">
@@ -454,6 +457,11 @@
     <script src="/froala_editor_2.8.4/js/froala_editor.pkgd.min.js"></script>
     <script src="/Script/main.js"></script> 
     {{{_sections.js}}}
+    <script>
+        $('#adminLogout').on('click', function () {
+            $('.frmLogout').submit();
+        });
+    </script>
 </body>
 
 </html>

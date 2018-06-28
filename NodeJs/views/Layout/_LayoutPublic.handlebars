@@ -29,7 +29,7 @@
             <p class="p-2">
 
                 {{#if layoutVM.isLogged}} Xin chào,
-                <a class="color-purple" href="/account/profile?id={{layoutVM.currentUser.ID}}">{{layoutVM.currentUser.FullName}}</a>
+                <a class="color-purple" href="/account/profile">{{layoutVM.currentUser.FullName}}</a>
                 <a id="lnkLogout" href="javascript:;">Đăng xuất</a>
                 {{else}}
                 <a href="/account/login">Đăng nhập</a>

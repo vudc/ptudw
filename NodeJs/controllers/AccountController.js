@@ -3,6 +3,7 @@ var express = require('express'),
 var config = require('../config/config');
 var accountRepo = require('../repos/accountRepo');
 var cartRepo = require('../repos/cartRepo');
+var productRepo = require('../repos/productRepo');
 var router = express.Router();
 router.get('/login', (req, res) => {
     var vm = {
@@ -11,21 +12,21 @@ router.get('/login', (req, res) => {
     res.render('account/login', vm);
 });
 
-router.get('/edit',(req,res)=>{
+router.get('/edit', (req, res) => {
     if ((req.session.isLogged === false) || (req.session.User.ID != req.query.id)) {
         res.redirect('/error');
         return;
     }
     accountRepo.loadUser(req.query.id).then(result => {
         var vm = {
-            user:result[0],
+            user: result[0],
         }
-        res.render('account/edit',vm);
+        res.render('account/edit', vm);
     }).catch(err => {
         res.end('loi');
     });
 });
-router.post('/edit',(req,res)=>{
+router.post('/edit', (req, res) => {
     var User = {
         id: req.body.userID,
         fullname: req.body.FullName,
@@ -33,29 +34,30 @@ router.post('/edit',(req,res)=>{
         address: req.body.Address,
         dob: req.body.DoB
     }
-    accountRepo.edit(User).then(r =>{
-        res.redirect('/account/profile?id='+User.id);
+    accountRepo.edit(User).then(r => {
+        res.redirect('/account/profile');
     });
 })
 router.get('/profile', (req, res) => {
-    if ((req.session.isLogged === false) || (req.session.User.ID != req.query.id)) {
-        res.redirect('/error');
+    if ((req.session.isLogged === false)||(req.session.User === undefined)) {
+        res.redirect('/account/login');
         return;
     }
-    var p2 = cartRepo.loadAllOrderByUserID(req.query.id);
-    var p1 = accountRepo.loadUser(req.query.id);
-    Promise.all([p1,p2]).then(([r1,r2])=>{
-        for (var i = 0;i<r2.length;i++){
+
+    var p2 = cartRepo.loadAllOrderByUserID(req.session.User.ID);
+    var p1 = accountRepo.loadUser(req.session.User.ID);
+    Promise.all([p1, p2]).then(([r1, r2]) => {
+        for (var i = 0; i < r2.length; i++) {
             r2[i].CreateDate = moment(r2[i].CreateDate, 'YYYY-MM-DD HH:mm:ss').format('D/M/YYYY');
         }
         var vm = {
-            user:r1[0],
+            user: r1[0],
             order: r2,
-            
+
         }
         console.log(r2)
-        res.render('account/profile',vm);
-    }).catch(err=>{
+        res.render('account/profile', vm);
+    }).catch(err => {
         res.end('loi');
     });
 });
@@ -91,13 +93,12 @@ router.get('/register', (req, res) => {
     res.render('account/register', vm);
 });
 
-
 router.post('/register', (req, res) => {
-    var doB = moment(req.body.DoB, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm');
+    var doB = moment(req.body.DoB, 'D/M/YYYY').format('D/M/YYYY');
     const secretKey = "6LifdWAUAAAAAG1OTkOEfz8wRr1BOqMBAS6TGTDc";
     const veryfyURL = `https://google.com/recapcha/api/siteverify?secret=${secretKey}
     &response=${req.body.capcha}&removeip=${req.connection.remoteAddress}`;
-    
+
     accountRepo.isUserExsits(req.body.Username).then(rows => {
         if (rows.length > 0) {
             var vm = {
@@ -135,8 +136,38 @@ router.post('/register', (req, res) => {
     });
 });
 
-router.get('/order',(req,res)=>{
-    res.render('/account/order');
+router.get('/order', (req, res) => {
+    var orderID = req.query.id;
+    var listProductReq = [];
+    cartRepo.LoadOrderDetail(orderID).then(listOrderDetail => {
+        for (var i = 0; i < listOrderDetail.length; i++) {
+            var product = productRepo.SinglewithFull(listOrderDetail[i].ProductID);
+            listProductReq.push(product);
+        }
+        Promise.all(listProductReq).then(result => {
+            var ListProduct = [];
+            for (var i = 0; i < result.length; i++) {
+                result[i].CreateDate = moment(result[i].CreateDate, 'YYYY-MM-DD HH:mm:ss').format('D/M/YYYY');
+                var quantity = 0;
+                for(var j =0;j<listOrderDetail.length;j++){
+                    if (listOrderDetail[j].ProductID === result[i].ID){
+                        quantity = listOrderDetail[i].Quantity;
+                    }
+                }
+                var orderItem = {
+                    quantity: quantity,
+                    amount: quantity * result[i].Price,
+                    product: result[i]
+                }
+                ListProduct.push(orderItem);
+            }
+            var vm = {
+                listProduct: ListProduct
+            }
+            res.render('account/order',vm);
+        })
+    })
+
 })
 
 router.post('/logout', (req, res) => {
