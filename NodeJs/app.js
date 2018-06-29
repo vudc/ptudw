@@ -6,7 +6,7 @@ var express_handlebars_sections = require('express-handlebars-sections');
 var bodyParser = require('body-parser');
 var path = require('path');
 var handleLayoutMDW = require('./middle-wares/handleLayout');
-
+var http = require('http');
 var
     AccountController = require('./controllers/AccountController'),
 
@@ -86,7 +86,7 @@ app.get('/', (req, res) => {
 app.get('/admin', (req, res) => {
     res.redirect('/admin/order');
 })
-module.exports = app;
+http.createServer(app).listen(3000);
 // app.listen(3000, () => {
 //     console.log('Site running on port 3200');
 // });

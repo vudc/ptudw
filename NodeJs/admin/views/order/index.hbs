@@ -1,45 +1,47 @@
-{{#section 'metaName'}} Quản lý Đơn hàng {{/section}} {{#section 'metaFunction'}} Trang chủ {{/section}} 
+{{#section 'metaName'}} Quản lý Đơn hàng {{/section}} {{#section 'metaFunction'}} Trang chủ {{/section}}
 
 <div class="table-responsive">
-	<table  class="table table-hover display my-datatable">
-	<thead>
-		<tr>
-			<th>ID</th>
-			<th>Tên người đặt</th>
-			<th>Địa chỉ</th>
-            <th>SĐT</th>
-            <th>Email</th>
-			<th>&nbsp;</th>
-		</tr>
-	</thead>
-	<tbody>
-		{{#each listOrder}}
-		<tr>
-			<td>{{ID}}</td>
-			<td>{{FullName}}</td>
-			<td>{{Address}}</td>
-            <td>{{Phone}}</td>
-            <td>{{Email}}</td>
-			<td class="text-right">
-				<a href="/admin/producer/delete?id={{ID}}" role="button">
-					<i class="fa fa-trash"></i>
-				</a>
-				<a href="/admin/producer/edit?id={{ID}}" role="button">
-					<span class="fa fa-edit"></span>
-				</a>
-			</td>
-		</tr>
-		{{/each}}
-	</tbody>
-</table>
+	<table class="table table-hover display my-datatable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Tên người đặt</th>
+				<th>Địa chỉ</th>
+				<th>SĐT</th>
+				<th>Ngày lập</th>
+				<th>Trạng thái</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each listOrder}}
+			<tr>
+				<td>{{orderID}}</td>
+				<td>{{FullName}}</td>
+				<td>{{Address}}</td>
+				<td>{{Phone}}</td>
+				<td>{{orderCreateDate}}</td>
+				{{#compareStatus orderStatus 1}}
+				<td>
+					<i class="fa fa-spinner" style="color:darkturquoise"></i> Đang xử lý</td>
+				{{else}} {{#compareStatus orderStatus 2}}
+				<td>
+					<i class="fa fa-check" style="color:chartreuse"></i> Đã gửi</td>
+
+				{{else}}
+				<td>
+					<i class="fa fa-times" style="color: red"></i> Đã hủy</td>
+				{{/compareStatus}} {{/compareStatus}}
+				<td class="text-right">
+					<a href="/admin/order/delete?id={{orderID}}" role="button">
+						<i class="fa fa-trash"></i>
+					</a>
+					<a href="/admin/order/edit?id={{orderID}}" role="button">
+						<span class="fa fa-edit"></span>
+					</a>
+				</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
 </div>
-
-
-
-
-
-
-
-
-
-

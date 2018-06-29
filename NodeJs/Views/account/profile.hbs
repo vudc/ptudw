@@ -50,10 +50,11 @@
                                 <i class="fa fa-spinner" style="color:darkturquoise"></i> Đang xử lý</td>
                             {{else}} 
                             {{#compareStatus Status 2}}
+                            <td>
                             <i class="fa fa-check" style="color:chartreuse"></i> Đã gửi</td>
 
                             {{else}}
-                            <i class="fa fa-times" style="color: red"></i> Đã hủy</td>
+                            <td><i class="fa fa-times" style="color: red"></i> Đã hủy</td>
                             {{/compareStatus}}
                             {{/compareStatus}} 
                             <td>{{CreateDate}}</td>

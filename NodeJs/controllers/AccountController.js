@@ -6,6 +6,10 @@ var cartRepo = require('../repos/cartRepo');
 var productRepo = require('../repos/productRepo');
 var router = express.Router();
 router.get('/login', (req, res) => {
+    if (req.session.isLogged === true) {
+        res.redirect('/home');
+        return; 
+    }
     var vm = {
         layout: false
     }
