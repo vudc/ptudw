@@ -12,3 +12,7 @@ exports.single = (id) =>{
     var sql = `select * from dm_order where ID = ${id}`;
     return db.load(sql);
 }
+exports.deleteOrderDetail = (id)=>{
+    var sql = `delete from orderdetail where ID = ${id}`;
+    return db.save(sql);
+}

@@ -96,6 +96,7 @@ function upload(req, callback) {
         });
 
         // Save image to disk.
+        console.log(file);
         file.pipe(diskWriterStream);
     });
 

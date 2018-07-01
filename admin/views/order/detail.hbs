@@ -1,0 +1,42 @@
+<form id="removeItem_form" method="POST" action="/cart/remove">
+    <input name="productID" id="delByProductID" type="hidden"/>
+</form>
+{{#section 'js'}}
+	<script type="text/javascript">
+		$('.btnDelete').on('click', function() {
+		    var id = $(this).data('proid');
+		    $('#delByProductID').val(id); 
+		    $('#removeItem_form').submit();
+		});
+	</script>
+{{/section}}
+<div class="table-responsive" style="margin-bottom: 1em;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each listProduct}}
+            <tr>
+                <td>{{product.ID}}</td>
+                <td>{{product.Name}}</td>
+                <td><img src="{{product.Image}}" style="width:50px" /></td>
+                <td>{{product.Price}}</td>
+                <td>{{quantity}}</td>
+                <td><a>Xóa</i></a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+     <a class="btn btn-default" href="/admin/order" role="button">
+        <span class="fa fa-arrow-left"></span>
+        Xem danh sách đơn hàng
+    </a>
+</div>
