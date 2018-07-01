@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
@@ -44,11 +45,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 var sessionStore = new MySQLStore({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'Congvu307',
-    database: 'duyenmay',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
     createDatabaseTable: true,
     schema: {
         tableName: 'sessions',
@@ -86,10 +87,11 @@ app.get('/', (req, res) => {
 app.get('/admin', (req, res) => {
     res.redirect('/admin/order');
 })
-http.createServer(app).listen(3000);
-// app.listen(3000, () => {
-//     console.log('Site running on port 3200');
-// });
+// http.createServer(app).listen(process.env.PORT);
+console.log('Starting app with config:', process.env)
+app.listen(process.env.PORT, () => {
+  console.log('Site running on port ' + process.env.PORT);
+});
 // http.createServer(function (req, res) {
 //     res.writeHead(200, {'Content-Type': 'text/plain'});
 //     res.end('Hello World\n');
