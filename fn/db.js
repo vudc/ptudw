@@ -3,11 +3,6 @@ var mysql = require('mysql');
 exports.load = sql => {
     return new Promise((resolve, reject) => {
         var cn = mysql.createConnection({
-            // host: 'localhost',
-            // port: 3306,
-            // user: 'root',
-            // password: 'Congvu307',
-            // database: 'duyenmay',
             host: process.env.DB_HOST,
             port: process.env.DB_PORT,
             user: process.env.DB_USER,
@@ -24,7 +19,6 @@ exports.load = sql => {
             } else {
                 resolve(rows);
             }
-
             cn.end();
         });
     });
@@ -42,7 +36,6 @@ exports.save = sql => {
         });
 
         cn.connect();
-
         cn.query(sql, function(error, value) {
             if (error) {
                 reject(error);

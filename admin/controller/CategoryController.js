@@ -75,7 +75,6 @@ router.get('/edit', (req, res) => {
         return;
     }
     categoryRepo.single(req.query.id).then(c => {
-    	console.log(c);
         var vm = {
             Category: c,
             layout: '_LayoutAdmin'
@@ -85,11 +84,7 @@ router.get('/edit', (req, res) => {
 });
 
 router.post('/edit', (req, res) => {
-    console.log(req.body);
     categoryRepo.update(req.body).then(value => {
-        var vm = {
-            layout: '_LayoutAdmin'
-        }
         res.redirect('/admin/category');
     });
 });

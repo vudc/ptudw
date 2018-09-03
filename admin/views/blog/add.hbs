@@ -1,0 +1,33 @@
+<form method="POST">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="form-group">
+                <label>Tiêu đề bài biết</label>
+                <input class="form-control" name="Tittle" placeholder="Tiêu đề bài viết" />
+            </div>
+            <label>Nội dung bài viết</label>
+            <textarea id="ckeditor-addblog" name=""></textarea>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Danh mục</label>
+                <select class="form-control" name="Post_Category">
+                    <option disabled selected value="0">--Chọn danh mục--</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tag</label>
+                <input class="form-control" name="Tag" />
+            </div>
+        </div>
+    </div>
+
+</form>
+<script type="text/javascript">
+    CKEDITOR.replace('ckeditor-addblog', {
+        "extraPlugins": 'imagebrowser',
+        "imageBrowser_listUrl": "/admin/file/list",
+    });
+</script>

@@ -1,0 +1,36 @@
+{{#section 'metaName'}} Quản lý danh mục bài viết{{/section}} {{#section 'metaFunction'}} chỉnh sửa {{/section}}
+<form method="POST">
+    {{#with blog_category}}
+
+    <!--ID danh mục bài viết-->
+    <div class="form-group">
+        <label>ID</label>
+        <input class="form-control" name="ID" value="{{ID}}" readonly/>
+    </div>
+
+    <!--Tên danh mục bài viết-->
+    <div class="form-group">
+        <label>Tên danh mục</label>
+        <input class="form-control" name="Name" value="{{Name}}" />
+    </div>
+
+    <div class="form-group">
+        <label>Mô tả của danh mục</label>
+        <input class="form-control" name="Description" value="{{Description}}" />
+    </div>
+
+    <div class="form-group">
+        <label>Ghi chú</label>
+        <input class="form-control" name="Note" value="{{Note}}" />
+    </div>
+
+    <a class="btn btn-default" href="/admin/blog_category" role="button">
+		<span class="fa fa-arrow-left"></span>
+		Danh sách danh mục
+	</a>
+	<button type="submit" class="btn btn-primary">
+		<span class="fa fa-save"></span>
+		Chỉnh sửa
+	</button>
+    {{/with}}
+</form>

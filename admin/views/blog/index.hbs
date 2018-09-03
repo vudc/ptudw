@@ -1,0 +1,31 @@
+<div class="table-responsive">
+	<table  class="table table-hover display my-datatable">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>Tên danh mục</th>
+			<th>Mô tả danh mục</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#each Listcategories}}
+		{{#if Status}}
+		<tr>
+			<td>{{ID}}</td>
+			<td>{{Name}}</td>
+			<td>{{Discription}}</td>
+			<td class="text-right">
+				<a href="/admin/category/delete?id={{ID}}" role="button">
+					<i class="fa fa-trash"></i>
+				</a>
+				<a href="/admin/category/edit?id={{ID}}" role="button">
+					<span class="fa fa-edit"></span>
+				</a>
+			</td>
+		</tr>
+		{{/if}}
+		{{/each}}
+	</tbody>
+</table>
+</div>

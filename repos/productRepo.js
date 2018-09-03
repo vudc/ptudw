@@ -87,6 +87,7 @@ exports.add = (p) => {
 exports.edit = (p) => {
     var sql = `update product set Name = '${p.name}', Discription = '${p.discription}', Image = '${p.image}', Price = '${p.price}',
     PromotionPrice = '${p.promotionprice}', CategoryID = ${p.categoryid}, Detail = '${p.detail}',producerID = ${p.producerid} where ID = ${p.id}`;
+    console.log(sql);
     return db.save(sql);
 }
 

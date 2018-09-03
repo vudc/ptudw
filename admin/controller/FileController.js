@@ -1,36 +1,44 @@
-
-
-var express = require("express");
+const express = require('express')
+var multer  =   require('multer');
+var fs = require('fs')
+var path = require('path')
+var crypto = require('crypto');
 var router = express.Router();
-var path = require("path");
-var fs = require("fs");
-var upload_file = require("../../repos/uploadRepo");
-var FroalaEditor = require('wysiwyg-editor-node-sdk/lib/froalaEditor');
-router.post("/image_upload", function (req, res) {
-    upload_file(req, function (err, data) {
-
-        if (err) {
-            return res.status(404).end(JSON.stringify(err));
-        }
-
-        res.send(data);
-    });
+var storage = multer.diskStorage({
+  //folder upload -> public/upload
+  destination: './public/upload/',
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      if (err) return cb(err)
+      cb(null, Math.floor(Math.random()*9000000000) + 1000000000 + path.extname(file.originalname))
+    })
+  }
+})
+var upload = multer({ storage: storage });
+router.post('/upload', upload.single('flFileUpload'), function (req, res, next) {
+  res.redirect('back')
 });
-
-router.get('/load_images', function (req, res) {
-
-    FroalaEditor.Image.list('/public/uploads/', function (err, data) {
-
-        if (err) {
-            return res.status(404).end(JSON.stringify(err));
+router.get('/list', function (req, res) {
+    const images = fs.readdirSync('public/upload')
+    var sorted = []
+    for (let item of images){
+        if(item.split('.').pop() === 'png'
+        || item.split('.').pop() === 'jpg'
+        || item.split('.').pop() === 'jpeg'
+        || item.split('.').pop() === 'svg'){
+            var abc = {
+                  "image" : "/upload/"+item,
+                  "folder" : '/'
+            }
+            sorted.push(abc)
         }
-        for (var i = 0;i<data.length;i++){
-            data[i].url = data[i].url.slice(7);
-            data[i].thumb = data[i].thumb.slice(7);
-        }
-        return res.send(data);
-    });
-});
+    }
+    res.send(sorted);
+  })
+router.get('/', function (req, res) {
+  var title = "Plugin Imagebrowser ckeditor for nodejs"
+  res.render('index', { result: 'result' })
+})
 // Create folder for uploading files.
 
 module.exports = router;

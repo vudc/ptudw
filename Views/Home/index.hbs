@@ -62,7 +62,7 @@
         <div id="intro-inside" class="row">
             <div class="col-lg-5 col-md-12 col-sm-12 text-center" >
                 <h1><i>Duyên Mây</i></h1>
-                <p>
+                <p>{{tempx}}
                     Xin chào! Tôi là Mây, tôi yêu viết lách và làm đẹp. Nếu bắt tôi chọn cái
                     nào hơn thì tôi sẽ không chọn được đâu. Thế nên, tôi quyết định xây
                     ngôi nhà này để VIẾT LÁCH về chuyện LÀM ĐẸP. Hơn cả những sản
@@ -181,20 +181,6 @@
 </section>
 
 <hr>
-<section>
-    <h3 style="margin-top:3em" class="dm-bigheader text-center">Lượt mua nhiều nhât</h3>
-    <div class="row">
-        {{#each listSellProduct}}
-            <div class="col-lg-2 col-md-6 text-center">
-                <img  src="{{Image}}" />
-                <p style="min-height: 96px;">{{Name}}</p>
-                <small>Lượt mua: {{SeoCount}}</small>
-                <p>Giá: <span class="color-purple">{{Price}}đ</span></p><br>
-                <a href="home/product?id={{ID}}" class="btn btn-sm btn-secondary">Chi tiết</a> <a href="#" onclick="addCart({{ID}})" class="btn btn-sm btn-secondary">Thêm vào giỏ</a>
-            </div>
-        {{/each}}
-    </div>
-</section>
 <!--Why Us-->
 <section style="margin-top:1em;">
     <hr class="hr-style" style="margin:0.1em 0 4em 0;" />
@@ -203,29 +189,40 @@
             <h1 class="dm-bigheader text-center text-white">Vì sao chọn chúng tôi?</h1>
             <i class="fa fa-2x fa-heart text-center"></i>
             <div id="whyUs-table">
-                orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised
+                <strong>Điều 1:</strong> Mỹ phẩm chính hãng, nói KHÔNG với hàng fake.<br />
+                <strong>Điều 2:</strong> Tư vấn tận tâm, không bỏ rơi khách hàng. Đeo bám khách
+                hàng tới khi nào đẹp lồng lộn mới thôi. Chưa đẹp lồng lộn, đeo
+                tiếp!<br />
+                <strong>Điều 3:</strong> Nghiêm chỉnh chấp hành 2 điều trên!
                 <p><button class="btn btn-primary btn-lg bgcolor-purple">LIÊN HỆ</button></p>
             </div>
         </div>
     </div>
 
-    <div class="row" id="whyUs">
-        <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="row text-center" id="whyUs">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <h2 class="color-purple"><i class="fa fa-shopping-cart"></i> <strong>Giao hàng</strong></h2>
-            <p>orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, whe</p>
+            <p class="text-center">
+                Dù bạn có ở Đông Tây<br />
+                Hàng liền ship đến tận trao tay này<br />
+                Kiểm tra hàng hóa luôn ngay<br />
+                Hài lòng, ưng ý mới xin lấy tiền
+            </p>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <h2 class="color-purple"><i class="fa fa-phone-volume"></i><strong> Hỗ trợ</strong></h2>
-            <p>orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, whe</p>
+            <p>
+                Luôn luôn lắng nghe và hỗ trợ bạn hết mình, trả lời và giải đáp các thắc mắc liên quan đến sản phẩm.
+            </p>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <h2 class="color-purple"><i class="fa fa-piggy-bank"></i> <strong>Tiết kiệm</strong></h2>
-            <p>orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, whe</p>
+            <p>
+                Hàng chính hãng - giá mềm - không lo lố <br />
+                Săn hàng deal, khuyến mãi, nhận quà - nhiều vô số
+            </p>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-            <h2 class="color-purple"><i class="fa fa-shopping-cart"></i><strong> Giao hàng</strong></h2>
-            <p>orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, whe</p>
-        </div>
+
     </div>
 </section>
 <hr />

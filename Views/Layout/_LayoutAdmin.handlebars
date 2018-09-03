@@ -16,9 +16,6 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="stylesheet" href="/asset/css/normalize.css">
     <link rel="stylesheet" href="/asset/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/froala_editor_2.8.4/css/froala_editor.pkgd.min.css">
-    <link rel="stylesheet" href="/froala_editor_2.8.4/css/froala_style.css">
-
     <link rel="stylesheet" href="/asset/css/font-awesome.min.css">
     <link rel="stylesheet" href="/asset/css/themify-icons.css">
     <link rel="stylesheet" href="/asset/css/flag-icon.min.css">
@@ -34,6 +31,7 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <script src="/Script/jquery-3.3.1.min.js"></script>
     <script src="/Script/bootstrap.js"></script>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -58,23 +56,31 @@
                     <h3 class="menu-title">Quản lý</h3>
                     <li class="active">
                         <a href="/admin/producer">
-                            <i class="menu-icon fa fa-product-hunt"></i>Quản lý nhà sản xuất </a>
+                            <i class="menu-icon fa fa-product-hunt"></i>Nhà sản xuất </a>
                     </li>
                     <li class="active">
                         <a href="/admin/category">
-                            <i class="menu-icon fa fa-cart-plus"></i>Quản lý danh mục</a>
+                            <i class="menu-icon fa fa-cart-plus"></i>Danh mục</a>
+                    </li>
+                    <li class="active">
+                        <a href="/admin/blog">
+                            <i class="menu-icon fa fa-cart-plus"></i>Bài viết</a>
+                    </li>
+                    <li class="active">
+                        <a href="/admin/blog_category">
+                            <i class="menu-icon fa fa-cart-plus"></i>Danh mục bài viết</a>
                     </li>
                     <li class="active">
                         <a href="/admin/product">
-                            <i class="menu-icon fa fa-cubes"></i>Quản lý sản phẩm</a>
+                            <i class="menu-icon fa fa-cubes"></i>Sản phẩm</a>
                     </li>
                      <li class="active">
                         <a href="/admin/order">
-                            <i class="menu-icon fa fa-shopping-cart"></i>Quản lý đơn hàng</a>
+                            <i class="menu-icon fa fa-shopping-cart"></i>Đơn hàng</a>
                     </li>
                      <li class="active">
                         <a href="/admin/user">
-                            <i class="menu-icon fa fa-user"></i>Quản lý người dùng</a>
+                            <i class="menu-icon fa fa-user"></i>Người dùng</a>
                     </li>
                     <h3 class="menu-title">Quy định</h3>
                      <li class="active">
@@ -463,7 +469,7 @@
     <script src="/asset/js/lib/chart-js/Chart.bundle.js"></script>
     <script src="/asset/js/dashboard.js"></script>
     <script src="/asset/js/widgets.js"></script>
-    <script src="/asset/js/lib/vector-map/jquery.vmap.js"></script> {{{_sections.blogjs}}}
+    <script src="/asset/js/lib/vector-map/jquery.vmap.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
     <script src="/asset/js/lib/vector-map/jquery.vmap.min.js"></script>

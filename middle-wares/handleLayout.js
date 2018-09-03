@@ -6,7 +6,6 @@ module.exports = (req, res, next) => {
         req.session.isLogged = false;
 
     }
-    var listProducer = {};
     
     categoryRepo.loadAll().then(rows => {
         producerRepo.LoadAll().then(row2 => {
