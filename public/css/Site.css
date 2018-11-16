@@ -577,3 +577,40 @@ footer {
     font-weight: 600;
     font-size: 14px;
 }
+.listBlog{
+    margin-top: 1em;
+}
+.listBlog  img {
+    height: 300px;
+    width:auto;
+}
+.listBlog .readmore{
+    cursor: pointer;
+    padding:0.5em 1em;
+    border-radius: 3px;
+    color:gray;
+    border: 2px solid #8c8b8b;
+    background: none;
+    transition: all 0.5s;
+}
+.listBlog .readmore:hover {
+    border: 2px solid #883fc1;
+    background: #883fc1;
+    color:white;
+}
+.hr-blog {
+    background:#cecece;
+    height:3px;
+}
+.BLOG-new-blog p{
+    color: gray !important;
+    font-size: 16px;
+    transition: all 0.4s;
+}
+.BLOG-new-blog p:hover {
+    color: #883fc1;
+}
+.BLOG-new-blog h5 {
+    font-size: 22px;
+    font-weight: 700;
+}

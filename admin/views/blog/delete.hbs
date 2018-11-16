@@ -1,0 +1,13 @@
+{{#with Blog}}
+<form method="POST">
+    <div class="form-group">
+        <label>ID</label>
+        <input readonly class="form-control"  name="ID" value="{{ID}}"/>
+    <div class="form-group">
+        <label>Tiêu đề bài viết</label>
+        <input readonly class="form-control"  value="{{Tittle}}"/>
+    </div>
+    </div>
+    <button class="btn btn-danger">Xóa bài viết</button>
+</form>
+{{/with}}

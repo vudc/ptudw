@@ -42,7 +42,7 @@ router.post('/add', (req, res) => {
     var product = {
 
         name: req.body.Name,
-        discription: req.body.Discription,
+        discription: req.body.Discription.replace("\""," "),
         image: req.body.Image,
         categoryid: req.body.categoryID,
         producerid: req.body.producerID,
@@ -53,9 +53,7 @@ router.post('/add', (req, res) => {
     console.log(product);
     productRepo.add(product).then(value => {
         res.redirect('/admin/product');
-    }).catch(err => {
-        res.redirect('/home/error');
-    });
+    })
 });
 
 router.get('/edit', (req, res) => {
@@ -95,6 +93,23 @@ router.post('/edit', (req, res) => {
         res.redirect('/admin/product');
     }).catch(err => {
         redirect('/home/error');
+    })
+})
+
+router.get('/delete',(req,res)=>{
+    productRepo.single(req.query.id).then(r=>{
+        var vm = {
+            Product: r,
+            layout: '_LayoutAdmin'
+        }
+        res.render('../admin/views/product/delete',vm);
+    })
+})
+
+router.post('/delete',(req,res)=>{
+    productRepo.delete(req.body.ID).then(r=>{
+        console.log(req.body.ID);
+        res.redirect('/admin/product');
     })
 })
 module.exports = router;

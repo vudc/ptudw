@@ -19,7 +19,6 @@ exports.single = (id) => {
     });
 }
 
-
 exports.add = (c) => {
     var sql = `insert into category(Name,Discription) values('${c.Name}','${c.Discription}')`;
     return db.save(sql);

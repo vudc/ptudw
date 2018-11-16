@@ -1,1 +1,14 @@
 {{#section 'metaName'}} Quản lý sản phẩm {{/section}} {{#section 'metaFunction'}} Xóa sản phẩm {{/section}}
+{{#with Product}}
+<form method="POST">
+    <div class="form-group">
+        <label>Mã sản phẩm</label>
+        <input type="text" name="ID" value="{{ID}}" readonly/>
+    </div>
+    <div class="form-group">
+        <label>Tên sản phẩm</label>
+        <input type="text" name="productName" value="{{Name}}" readonly/>
+    </div>
+    <button type="submit" class="btn btn-danger">Xóa sản phẩm</button>
+</form>
+{{/with}}

@@ -1,0 +1,42 @@
+{{#section 'title'}}
+	Các bài viết
+{{/section}}
+<p class="color-gray text-uppercase" style="font-size: 80%;">Danh mục / Bài viết</p>
+<div class="row">
+    <div class="col-lg-9 col-md-9 listBlog">
+        {{#each listBlog}}
+        <div>
+            <img src="{{Image}}" class="img-fluid" alt="">
+        </div>
+        <h2>
+            <a>
+                {{Tittle}}
+            </a>
+        </h2>
+        <p>Đăng ngày: </p>
+        <hr>
+        <p style="color:gray">
+            {{Description}}
+        </p>
+        <a class="readmore" href="/blog/detail?id={{ID}}">Xem thêm</a>
+
+        <hr class="hr-blog">
+        {{/each}}
+    </div>
+    <div class="col-lg-3 col-md-3">
+        <div class="BLOG-new-blog">
+            <h5>Bài viết mới</h5>
+            {{#each listNewBlog}}
+            <hr>
+            <p> <a href="/blog/detail?id={{ID}}">{{Tittle}} </a></p>
+            {{/each}}
+
+        </div>
+        <div class="BLOG-blog-category">
+
+        </div>
+        <div class="BLOG-hot-product">
+
+        </div>
+    </div>
+</div>

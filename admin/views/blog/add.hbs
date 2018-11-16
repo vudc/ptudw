@@ -1,29 +1,44 @@
 <form method="POST">
     <div class="row">
         <div class="col-lg-9">
+            <input type="hidden" name="ID" value="{{ID}}">
             <div class="form-group">
                 <label>Tiêu đề bài biết</label>
-                <input class="form-control" name="Tittle" placeholder="Tiêu đề bài viết" />
+                <input class="form-control" name="Tittle" placeholder="Tiêu đề bài viết" required/>
+            </div>
+            <div class="form-group">
+                <label>Link ảnh</label>
+                <input class="form-control" name="Image" placeholder="/abc.jpg" required/>
+            </div>
+             <div class="form-goup">
+                 <label>Mô tả bài viết</label>
+                 <textarea class="form-control" name="Description" rows="4" required></textarea>
             </div>
             <label>Nội dung bài viết</label>
-            <textarea id="ckeditor-addblog" name=""></textarea>
+            <textarea id="ckeditor-addblog" name="BodyContent" required>&nbsp;</textarea>
         </div>
 
         <div class="col-lg-3">
             <div class="form-group">
                 <label>Danh mục</label>
-                <select class="form-control" name="Post_Category">
-                    <option disabled selected value="0">--Chọn danh mục--</option>
+                <select class="form-control" name="PostCategoryID">
+                    <option selected style="color:gray" value="3">--Chọn danh mục--</option>
+                    {{#each listBlogCategory}}
+                        <option value="{{ID}}">{{Name}}</option>
+                    {{/each}}
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Tag</label>
-                <input class="form-control" name="Tag" />
+                <input class="form-control" name="Tag" required value="" />
             </div>
         </div>
     </div>
-
+    <button type="submit" class="btn btn-primary">
+		<span class="fa fa-save"></span>
+		Tạo mới
+	</button>
 </form>
 <script type="text/javascript">
     CKEDITOR.replace('ckeditor-addblog', {

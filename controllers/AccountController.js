@@ -176,7 +176,7 @@ router.get('/order', (req, res) => {
 
 })
 
-//đăng xuất
+//Log out
 router.post('/logout', (req, res) => {
     req.session.isLogged = false;
     req.session.user = null;

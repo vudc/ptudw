@@ -1,0 +1,50 @@
+{{#with Blog}}
+<form method="POST">
+    <div class="row">
+        <input type="hidden" name="ID" value="{{ID}}" />
+        <div class="col-lg-9">
+            <div class="form-group">
+                <label>Tiêu đề bài biết</label>
+                <input class="form-control" name="Tittle" placeholder="Tiêu đề bài viết" value="{{Tittle}}" required/>
+            </div>
+            <div class="form-group">
+                <label>Link ảnh</label>
+                <input class="form-control" name="Image" value="{{Image}}" placeholder="/abc.jpg" required/>
+            </div>
+             <div class="form-goup">
+                 <label>Mô tả bài viết</label>
+                 <textarea class="form-control" name="Description" rows="4" required>{{Description}}</textarea>
+            </div>
+            <label>Nội dung bài viết</label>
+            <textarea id="ckeditor-addblog" name="BodyContent" required>{{BodyContent}}</textarea>
+        </div>
+
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label>Danh mục</label>
+                <select class="form-control" name="PostCategoryID">
+                    <option selected style="color:gray" value="3">--Chọn danh mục--</option>
+                    {{#each ../listBlogCategory}}
+                        <option value="{{ID}}">{{Name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tag</label>
+                <input class="form-control" name="Tag" required value="{{Tag}}" />
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">
+		<span class="fa fa-save"></span>
+		Tạo mới
+	</button>
+</form>
+{{/with}}
+<script type="text/javascript">
+    CKEDITOR.replace('ckeditor-addblog', {
+        "extraPlugins": 'imagebrowser',
+        "imageBrowser_listUrl": "/admin/file/list",
+    });
+</script>

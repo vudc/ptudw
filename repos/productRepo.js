@@ -92,8 +92,8 @@ exports.edit = (p) => {
 }
 
 
-exports.delete = (c) => {
-    var sql = `update category set Status ='${c.Status}' where ID = ${c.ID}`;
+exports.delete = (id) => {
+    var sql = `delete from Product where ID = ${id}`;
     return db.save(sql);
 }
 exports.update = (c) => {
@@ -102,7 +102,7 @@ exports.update = (c) => {
 }
 exports.countByCategoryID = (categoryID) => {
     sql = `select count(*) as totalProduct from product where categoryID = ${categoryID}`;
-    return db.load(sql);
+    return db.load(sql) ;
 }
 
 exports.countByProducerID = (producerID) => {
@@ -144,3 +144,7 @@ exports.loadOrderProducer = (productID) => {
     return db.load(sql);
 }
 
+exports.Disable = (id) =>{
+    var sql = `upload product set Status = 0 where ID = ${id}`;
+    return db.save(sql);
+}

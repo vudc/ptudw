@@ -28,7 +28,7 @@
     <div class="row">
         <div class="col-lg-6 form-group">
             <select class="form-control" name="categoryID">
-                <option disabled="" selected>--Chọn danh mục--</option>
+                <option disabled="" value="0" selected>--Chọn danh mục--</option>
                 {{#each ../listCategory}}
                     {{#if Status}}
                     <option value="{{ID}}">{{Name}}</option>
@@ -38,7 +38,7 @@
         </div>
         <div class="col-lg-6 form-group">
             <select class="form-control" name="producerID">
-                <option disabled="" selected>--Chọn nhà sản xuất--</option>
+                <option disabled="" value="0" selected>--Chọn nhà sản xuất--</option>
                 {{#each ../listProducer}}
                     <option value="{{ID}}">{{Name}}</option>
                 {{/each}}
@@ -71,7 +71,7 @@
     </a>
     <button type="submit" class="btn btn-primary">
         <span class="fa fa-save"></span>
-        Tạo mới
+        Lưu lại
     </button>
 </form>
 {{/with}}

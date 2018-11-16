@@ -1,25 +1,31 @@
+<a style="margin-bottom:1em;" class="btn btn-secondary" href="/admin/blog/add" role="button">
+	<span class="fa fa-plus"></span>
+	Thêm bài viết
+</a>
 <div class="table-responsive">
 	<table  class="table table-hover display my-datatable">
 	<thead>
 		<tr>
 			<th>#</th>
-			<th>Tên danh mục</th>
-			<th>Mô tả danh mục</th>
+			<th>Tên Bài viết</th>
+			<th>Ảnh</th>
 			<th>&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
-		{{#each Listcategories}}
+		{{#each listBlog}}
 		{{#if Status}}
 		<tr>
 			<td>{{ID}}</td>
-			<td>{{Name}}</td>
-			<td>{{Discription}}</td>
+			<td>{{Tittle}}</td>
+			<td>
+				<img style="width:50px;height:auto" src="{{Image}}" />
+			</td>
 			<td class="text-right">
-				<a href="/admin/category/delete?id={{ID}}" role="button">
+				<a href="/admin/blog/delete?id={{ID}}" role="button">
 					<i class="fa fa-trash"></i>
 				</a>
-				<a href="/admin/category/edit?id={{ID}}" role="button">
+				<a href="/admin/blog/edit?id={{ID}}" role="button">
 					<span class="fa fa-edit"></span>
 				</a>
 			</td>

@@ -14,6 +14,10 @@ exports.Add = (blog_category) =>{
 }
 exports.Update = (blog_category) => {
     var sql = `update post_category set Name = '${blog_category.Name}',
-    Description = '${blog_category.Description}',Note = '${blog_category.Note}' where ID = ${blog_category.ID}`;;
+    Description = '${blog_category.Description}',Note = '${blog_category.Note}' where ID = ${blog_category.ID}`;
+    return db.save(sql);
+}
+exports.Delete = (id)=>{
+    var sql = `update post_category set Status = 0 where ID = ${id}`;
     return db.save(sql);
 }

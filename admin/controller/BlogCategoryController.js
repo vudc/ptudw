@@ -48,4 +48,11 @@ router.post('/edit',(req,res)=>{
         res.redirect('/admin/blog_category');
     })
 })
+
+router.get('/delete',(req,res)=>{
+    var vm = {
+        layout: '_LayoutAdmin'
+    }
+    res.render('../admin/views/blog_category/delete',vm);
+})
 module.exports = router;

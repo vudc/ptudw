@@ -23,7 +23,7 @@ var storage = multer.diskStorage({
   })
 var
     AccountController = require('./controllers/AccountController'),
-
+    BlogController = require('./controllers/BlogController');
     HomeController = require('./controllers/HomeController'),
     CartController = require('./controllers/CartController');
 var admin_Upload = require('./admin/controller/FileController')
@@ -87,6 +87,7 @@ app.use(session({
 ///
 //pass value to layout
 app.use(handleLayoutMDW);
+app.use('/blog',BlogController);
 app.use('/test', admin_Upload);
 app.use('/account', AccountController);
 app.use('/admin/order', admin_OrderController);
