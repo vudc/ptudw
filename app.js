@@ -3,7 +3,6 @@ var express = require('express');
 var session = require('express-session');
 var multer  =   require('multer');
 var crypto = require('crypto');
-var fs = require('fs')
 var MySQLStore = require('express-mysql-session')(session);
 var exphbs = require('express-handlebars');
 var express_handlebars_sections = require('express-handlebars-sections');
